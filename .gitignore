@@ -9,6 +9,7 @@ src/main/resources/docs/
 /*.iml
 
 # VSCode files
+/.vscode/
 .vscode/*
 
 # Storage/log files
