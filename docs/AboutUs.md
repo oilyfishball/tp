@@ -16,14 +16,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/dumboiroy)]
 [[portfolio](team/dumboiroy.md)]
 
-- Role: Project Advisor
+- Role: Developer
 
-### Jane Doe
+### Kosolpattanadurong Thitiwat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/catisnotsodium.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/catisnotsodium)]
+[[portfolio](team/catisnotsodium)]
 
 - Role: Team Lead
 - Responsibilities: UI
