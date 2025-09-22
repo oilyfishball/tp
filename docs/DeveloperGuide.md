@@ -317,11 +317,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  **Compatibility** Our system should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  **Performance** Our system should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  **User Experience** A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. **User Experience** The client list view shall display no more than 5–6 clients per screen, with scrolling enabled to access additional entries, to avoid information overloading.
+5. **User Experience** Our system should limit the amount of text displayed to prevent lags and UI issues. It should also gracefully handle text-related issues such as long strings, emoji rendering, and font compatibility.
+6. **Process Requirement** Our project is expected to adhere to a schedule that delivers a feature set every week throughout the second half of the semester. 
+7. **Quality Assurance** All source code shall achieve a minimum of 80% unit test coverage.
 
 ### Glossary
 
