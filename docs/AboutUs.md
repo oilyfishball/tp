@@ -38,12 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Wong Yu Zhen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wongyuzhen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/oilyfishball)]
+[[github](http://github.com/wongyuzhen)]
+[[portfolio](team/wongyuzhen.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
