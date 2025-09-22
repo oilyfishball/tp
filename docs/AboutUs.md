@@ -9,19 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Alroy Loh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dumboiroy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-<<<<<<< HEAD
-[[portfolio](team/catisnotsodium)]
-=======
-[[portfolio](team/johndoe)]
->>>>>>> upstream/master
+[[github](https://github.com/dumboiroy)]
+[[portfolio](team/dumboiroy.md)]
 
-* Role: Project Advisor
+- Role: Developer
 
 ### Kosolpattanadurong Thitiwat
 
@@ -30,8 +25,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/catisnotsodium)]
 [[portfolio](team/catisnotsodium)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
 ### Lim Song Lin
 
@@ -39,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/forestmu)] [[portfolio](team/forestmu.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
 ### Wong Yu Zhen
 
@@ -49,8 +44,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/wongyuzhen)]
 [[portfolio](team/wongyuzhen.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### Lee Zhao Rui
 
@@ -59,5 +54,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/oilyfishball)]
 [[portfolio](team/oilyfishball.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
