@@ -1,9 +1,10 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2526S1-CS2103T-T09-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2526S1-CS2103T-T09-1/tp/actions/workflows/gradle.yml)
 
 [![codecov](https://codecov.io/gh/AY2526S1-CS2103-T09-01/tp/branch/master/graph/badge.svg?token=X0CYY9ZH9P)](https://codecov.io/gh/AY2526S1-CS2103-T09-01/tp)
 
 ![Ui](docs/images/Ui.png)
 
+__This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).__
 - This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   - as a starting point of a course project (as opposed to writing everything from scratch)
