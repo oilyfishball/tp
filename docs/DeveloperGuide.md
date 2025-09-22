@@ -288,16 +288,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HeartLink` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add person
+2.  HeartLink adds the person to the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details were incomplete.
+  
+  * 1a1. HeartLink shows error message. 
+
+    Use case ends.
+
+* 1b. The given name/phone number/email already exists.
+
+    * 1b1. HeartLink shows an error message.
+
+      Use case ends.
+  
+* 1c. The given details are of an invalid syntax.
+
+    * 1c1. HeartLink shows an error message.
+
+      Use case ends.
+
+
+**Use case: Edit a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  HeartLink shows a list of persons
+3.  User requests to edit a specific person in the list
+4.  HeartLink edits the specified details of the person.
 
     Use case ends.
 
@@ -307,13 +337,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given name does not exist.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HeartLink shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The updated name/phone number/email already exists.
+
+    * 3b1. HeartLink shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3c. The given details are of invalid syntax.
+
+    * 3c1. HeartLink shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
