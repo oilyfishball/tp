@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
-[[portfolio](team/forestmu)]
+[[portfolio](team/johndoe)]
 
 * Role: Project Advisor
 
@@ -24,12 +24,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/forestmu)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### forestmu
+### Lim Song Lin
 
 <img src="images/forestmu.png" width="200px">
 
@@ -38,22 +38,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Wong Yu Zhen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wongyuzhen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/forestmu)]
+[[github](http://github.com/wongyuzhen)]
+[[portfolio](team/wongyuzhen.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Lee Zhao Rui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/oilyfishball.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/forestmu)]
+[[github](http://github.com/oilyfishball)]
+[[portfolio](team/oilyfishball.md)]
 
 * Role: Developer
 * Responsibilities: UI
