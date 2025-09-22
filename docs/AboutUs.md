@@ -15,16 +15,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
+<<<<<<< HEAD
+[[portfolio](team/catisnotsodium)]
+=======
 [[portfolio](team/johndoe)]
+>>>>>>> upstream/master
 
 * Role: Project Advisor
 
-### Jane Doe
+### Kosolpattanadurong Thitiwat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/catisnotsodium.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/catisnotsodium)]
+[[portfolio](team/catisnotsodium)]
 
 * Role: Team Lead
 * Responsibilities: UI
