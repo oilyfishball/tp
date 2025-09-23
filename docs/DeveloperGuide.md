@@ -406,23 +406,18 @@ Use case ends.
 
     Use case resumes at step 2.
 
-* 3b. More than one client matches the name
-    * 3b1. HeartLink shows an ambiguity error.
+* 3b. Appointment details are invalid (date, time, duration, or status)
+  * 3b1. HeartLink shows an error message.
 
     Use case resumes at step 2.
 
-* 3c. Appointment details are invalid (date, time, duration, or status)
-  * 3c1. HeartLink shows an error message.
+* 3c. Appointment conflicts with an existing one
+  * 3c1. HeartLink shows a scheduling conflict message.
 
     Use case resumes at step 2.
 
-* 3d. Appointment conflicts with an existing one for the same client
-  * HeartLink shows a scheduling conflict message.
-
-    Use case resumes at step 2.
-
-* 3e. Appointment duplicates an existing one for the same client
-  * HeartLink shows a duplicate appointment error.
+* 3d. Appointment duplicates an existing one
+  * 3d1. HeartLink shows a duplicate appointment error.
 
     Use case resumes at step 2.
 
