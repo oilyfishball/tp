@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
+1.  User requests to <u>list persons</u>
 2.  HeartLink shows a list of persons
 3.  User requests to edit a specific person in the list
 4.  HeartLink edits the specified details of the person.
@@ -355,6 +355,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: List persons**
+**MSS**
+1. User requests to list persons by specifying relevant attributes, including name,
+appointment date, tag, rank.
+2. HeartLink displays the list of the persons corresponding to the attributes given by a user.
+All information for each person are shown.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given request is syntactically incorrect.
+  * 1a1. HeartLink shows an error message.
+    
+    Use case resumes at step 1.
+* 1b. One of the fields are invalid. 
+  * 1b1. HearLink shows an error message.
+    
+    Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
