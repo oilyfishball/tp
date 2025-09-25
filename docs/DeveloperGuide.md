@@ -352,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to [view clients](#use-case-view-clients). 
+1.  User requests to [<u>view clients</u>](#use-case-view-clients). 
 2.  HeartLink shows a list of clients
 3.  User requests to edit a specific person in the list
 4.  HeartLink edits the specified details of the clients.
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to [view clients](#use-case-view-clients).
+1. User requests to [<u>view clients</u>](#use-case-view-clients).
 2. HeartLink shows a list of clients.
 3. User requests to link an appointment to a specific client with the relevant details.
 4. HeartLink creates the appointment and links it to the chosen client.
