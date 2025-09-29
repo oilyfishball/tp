@@ -25,7 +25,9 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" style="-fx-padding: 0 12 0 0"/>
+        <Label fx:id="rank" styleClass="cell_small_label" text="\$rank"
+               style="-fx-padding: 2 5 2 5; -fx-background-color: #008000; -fx-background-radius: 10"/>
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />

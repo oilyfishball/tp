@@ -60,7 +60,7 @@ public class Rank {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + rankName + ']';
+        return rankName;
     }
 
 }
