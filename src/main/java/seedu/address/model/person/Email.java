@@ -31,6 +31,7 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
+    public static final String NO_EMAIL = "";
     public final String value;
 
     /**
@@ -48,7 +49,7 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals(NO_EMAIL) || test.matches(VALIDATION_REGEX);
     }
 
     @Override
