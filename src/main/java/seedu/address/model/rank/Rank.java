@@ -33,7 +33,7 @@ public class Rank {
      * Returns true if a given string is a valid rank name.
      */
     public static boolean isValidRankName(String test) {
-        return test.equals(NO_RANK)|| test.matches(VALIDATION_REGEX);
+        return test.equals(NO_RANK) || test.matches(VALIDATION_REGEX);
     }
 
     @Override
