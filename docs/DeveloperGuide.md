@@ -441,6 +441,29 @@ All information for each person are shown.
     
     Use case resumes at step 1.
 
+**Use case: Delete client**
+
+**MSS**
+
+1.  User requests to [<u>view clients</u>](#use-case-view-clients). 
+2.  HeartLink shows a list of clients
+3.  User requests to delete a specific person in the list by name
+4.  HeartLink deletes the specified client from the address book.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name does not exist.
+
+    * 3a1. HeartLink shows an error message.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1.  **Compatibility** Our system should work on any _mainstream OS_ as long as it has Java `17` or above installed.
