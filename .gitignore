@@ -11,6 +11,9 @@ src/main/resources/docs/
 # bin
 /bin/
 
+# VSCode files
+/.vscode/
+
 # Storage/log files
 /data/
 /config.json
