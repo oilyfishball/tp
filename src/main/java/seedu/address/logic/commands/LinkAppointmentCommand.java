@@ -2,11 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Creates an appointment and links it directly to a client (person).
@@ -33,7 +36,8 @@ public class LinkAppointmentCommand extends Command {
             + "/note Bring consent form "
             + "/status planned";
 
-    public static final String MESSAGE_SUCCESS = "New appointment linked: %1$s";
+    public static final String MESSAGE_SUCCESS = "New appointment linked to %1$s: %2$s";
+    public static final String MESSAGE_NO_SUCH_PERSON = "No client found with the name: %1$s";
 
     private final Name clientName;
     private final Appointment appointment;
@@ -49,9 +53,28 @@ public class LinkAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // For now just return a success message (link logic to be implemented in Model later).
-        return new CommandResult(String.format(MESSAGE_SUCCESS,
-                clientName + " at " + appointment.toString()));
+        // Find the client in the address book by name
+        Optional<Person> clientOpt = model.getFilteredPersonList().stream()
+                .filter(p -> p.getName().fullName.equalsIgnoreCase(clientName.fullName))
+                .findFirst();
+
+        if (clientOpt.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON, clientName));
+        }
+
+        Person client = clientOpt.get();
+
+        // Attach appointment to the model (global list)
+        if (model.hasAppointment(appointment)) {
+            throw new CommandException("This appointment already exists in the address book.");
+        }
+        model.addAppointment(appointment);
+
+        // Replace person with updated version containing the appointment
+        Person updatedClient = client.withAddedAppointment(appointment);
+        model.setPerson(client, updatedClient);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, appointment));
     }
 
     @Override

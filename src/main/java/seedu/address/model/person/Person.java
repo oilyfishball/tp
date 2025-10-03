@@ -29,19 +29,29 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Rank rank;
-    private final List<Appointment> appointments = new ArrayList<>();
+    private final List<Appointment> appointments;
 
     /**
-     * Every field must be present and not null.
+     * Creates a Person with no appointments.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Rank rank) {
-        requireAllNonNull(name, phone, email, address, tags, rank);
+        this(name, phone, email, address, tags, rank, Collections.emptyList());
+    }
+
+    /**
+     * Creates a Person with the given appointments.
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Rank rank, List<Appointment> appointments) {
+        requireAllNonNull(name, phone, email, address, tags, rank, appointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.rank = rank;
+        this.appointments = new ArrayList<>(appointments);
     }
 
     public Name getName() {
@@ -80,18 +90,21 @@ public class Person {
     }
 
     /**
-     * Adds an appointment for this person.
+     * Returns a new Person with the given appointment added.
      */
-    public void addAppointment(Appointment appointment) {
-        requireAllNonNull(appointment);
-        appointments.add(appointment);
+    public Person withAddedAppointment(Appointment appointment) {
+        List<Appointment> updatedAppointments = new ArrayList<>(appointments);
+        updatedAppointments.add(appointment);
+        return new Person(name, phone, email, address, tags, rank, updatedAppointments);
     }
 
     /**
-     * Removes an appointment for this person.
+     * Returns a new Person with the given appointment removed.
      */
-    public void removeAppointment(Appointment appointment) {
-        appointments.remove(appointment);
+    public Person withRemovedAppointment(Appointment appointment) {
+        List<Appointment> updatedAppointments = new ArrayList<>(appointments);
+        updatedAppointments.remove(appointment);
+        return new Person(name, phone, email, address, tags, rank, updatedAppointments);
     }
 
     /**
