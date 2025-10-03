@@ -40,6 +40,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label rank;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,6 +51,20 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        String personRank = person.getRank().rankName;
+        if (personRank.equals("stable")) {
+            rank.setStyle("-fx-padding: 2 5 2 5; -fx-background-color: #008000; -fx-background-radius: 10");
+        } else if (personRank.equals("vulnerable")) {
+            rank.setStyle("-fx-padding: 2 5 2 5; -fx-background-color: #E6B400; -fx-background-radius: 10");
+        } else if (personRank.equals("urgent")) {
+            rank.setStyle("-fx-padding: 2 5 2 5; -fx-background-color: #DD571C; -fx-background-radius: 10");
+        } else if (personRank.equals("crisis")) {
+            rank.setStyle("-fx-padding: 2 5 2 5; -fx-background-color: #BA110C; -fx-background-radius: 10");
+        } else {
+            rank.setStyle("-fx-padding: 2 5 2 5; -fx-background-radius: 10");
+        }
+        rank.setText(personRank);
+
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
