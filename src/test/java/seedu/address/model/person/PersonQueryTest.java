@@ -1,25 +1,18 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import seedu.address.testutil.PersonBuilder;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+
+import org.junit.jupiter.api.Test;
 
 public class PersonQueryTest {
 
     @Test
     public void equals() {
-        PersonQuery aliceQuery = new PersonQuery();
-        PersonQuery bobQuery = new PersonQuery();
+        PersonQuery aliceQuery = PersonQuery.build();
+        PersonQuery bobQuery = PersonQuery.build();
 
         // comparing empty queries -> returns true
         assertTrue(aliceQuery.equals(bobQuery));
@@ -39,38 +32,28 @@ public class PersonQueryTest {
         assertFalse(aliceQuery.equals(5));
 
         // different name -> returns false
-        aliceQuery = (new PersonQuery());
-        aliceQuery.setName(ALICE.getName());
-        bobQuery = new PersonQuery();
-        bobQuery.setName(BOB.getName());
+        aliceQuery = PersonQuery.build().setName(new Name[]{ALICE.getName()});
+        bobQuery = PersonQuery.build().setName(new Name[]{BOB.getName()});
         assertFalse(aliceQuery.equals(bobQuery));
 
         // different phone -> returns false
-        aliceQuery = (new PersonQuery());
-        aliceQuery.setPhone(ALICE.getPhone());
-        bobQuery = new PersonQuery();
-        bobQuery.setPhone(BOB.getPhone());
+        aliceQuery = PersonQuery.build().setPhone(ALICE.getPhone());
+        bobQuery = PersonQuery.build().setPhone(BOB.getPhone());
         assertFalse(aliceQuery.equals(bobQuery));
 
         // different email -> returns false
-        aliceQuery = (new PersonQuery());
-        aliceQuery.setEmail(ALICE.getEmail());
-        bobQuery = new PersonQuery();
-        bobQuery.setEmail(BOB.getEmail());
+        aliceQuery = PersonQuery.build().setEmail(ALICE.getEmail());
+        bobQuery = PersonQuery.build().setEmail(BOB.getEmail());
         assertFalse(aliceQuery.equals(bobQuery));
 
         // different address -> returns false
-        aliceQuery = (new PersonQuery());
-        aliceQuery.setAddress(ALICE.getAddress());
-        bobQuery = new PersonQuery();
-        bobQuery.setAddress(BOB.getAddress());
+        aliceQuery = PersonQuery.build().setAddress(ALICE.getAddress());
+        bobQuery = PersonQuery.build().setAddress(BOB.getAddress());
         assertFalse(aliceQuery.equals(bobQuery));
 
         // different tags -> returns false
-        aliceQuery = (new PersonQuery());
-        aliceQuery.setTags(ALICE.getTags());
-        bobQuery = new PersonQuery();
-        bobQuery.setTags(BOB.getTags());
+        aliceQuery = PersonQuery.build().setTags(ALICE.getTags());
+        bobQuery = PersonQuery.build().setTags(BOB.getTags());
         assertFalse(aliceQuery.equals(bobQuery));
     }
 }

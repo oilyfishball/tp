@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -45,33 +46,42 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_TAG, PREFIX_RANK);
+        // No duplicate fields
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_RANK);
         // No trailing preamble
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommand.MESSAGE_USAGE));
         }
-        PersonQuery query = new PersonQuery();
+        PersonQuery query = PersonQuery.build();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            query.setName(name);
+            String trimmedArgs = name.toString().trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            query = query.setName(nameKeywords);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            query.setPhone(phone);
+            query = query.setPhone(phone);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            query.setEmail(email);
+            query = query.setEmail(email);
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-            query.setAddress(address);
+            query = query.setAddress(address);
         }
         var tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         query.setTags(tags);
         if (argMultimap.getValue(PREFIX_RANK).isPresent()) {
             Rank rank = ParserUtil.parseRank(argMultimap.getValue(PREFIX_RANK).orElse(Rank.NO_RANK));
-            query.setRank(rank);
+            query = query.setRank(rank);
         }
         return new FindCommand(query);
     }
