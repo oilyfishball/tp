@@ -8,9 +8,6 @@
 
 ## About
 
-__This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-__
-
 - Heartlink is **an addressbook** created to cater to the needs of **Social Workers in Singapore**.<br>
   Example usages:
     - **Adding** a new client's information
@@ -25,3 +22,8 @@ __
 - For the detailed documentation of this project, see
   the [HeartLink Product Website](https://ay2526s1-cs2103t-t09-1.github.io/tp/).
 - It is named `HeartLink` because it can help to link the needy with social workers more seamlessly.
+
+## Credits
+
+This project is built with the AddressBook-Level3 project (by the [SE-EDU initiative](https://se-education.org)) as a
+template.
