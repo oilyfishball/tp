@@ -4,13 +4,34 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonQuery;
+
+public class FindCommand extends Command {
+    public static final String COMMAND_WORD = "find";
+    public static final String MESSAGE_USAGE = "<TO BE ADDED>";
+    public static final String MESSAGE_SUCCESS = "<TO BE ADDED>";
+
+    private final PersonQuery query;
+
+    public FindCommand(PersonQuery query) {
+        requireNonNull(query);
+        this.query = query;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        model.updateFilteredPersonList(query::filter);
+        return new CommandResult(MESSAGE_SUCCESS);
+    }
+}
+
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
- */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
@@ -56,3 +77,4 @@ public class FindCommand extends Command {
                 .toString();
     }
 }
+**/
