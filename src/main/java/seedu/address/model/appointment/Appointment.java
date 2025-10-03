@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Name;
 
 /**
  * Represents an Appointment in the address book.
@@ -12,6 +13,7 @@ import seedu.address.commons.util.ToStringBuilder;
  */
 public class Appointment {
 
+    private final Name clientName;
     private final AppointmentDateTime dateTime;
     private final AppointmentLength length;
     private final AppointmentLocation location;
@@ -22,19 +24,25 @@ public class Appointment {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(AppointmentDateTime dateTime,
+    public Appointment(Name clientName,
+                       AppointmentDateTime dateTime,
                        AppointmentLength length,
                        AppointmentLocation location,
                        AppointmentType type,
                        AppointmentNote note,
                        AppointmentStatus status) {
-        requireAllNonNull(dateTime, length, location, type, note, status);
+        requireAllNonNull(clientName, dateTime, length, location, type, note, status);
+        this.clientName = clientName;
         this.dateTime = dateTime;
         this.length = length;
         this.location = location;
         this.type = type;
         this.note = note;
         this.status = status;
+    }
+
+    public Name getClientName() {
+        return clientName;
     }
 
     public AppointmentDateTime getDateTime() {
@@ -59,6 +67,20 @@ public class Appointment {
 
     public AppointmentStatus getStatus() {
         return status;
+    }
+
+    /**
+     * Returns true if both appointments have the same client and date/time.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment other) {
+        if (other == this) {
+            return true;
+        }
+
+        return other != null
+                && other.getClientName().equals(getClientName())
+                && other.getDateTime().equals(getDateTime());
     }
 
     @Override

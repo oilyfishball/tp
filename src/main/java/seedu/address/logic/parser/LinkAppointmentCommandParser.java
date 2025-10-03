@@ -20,6 +20,7 @@ import seedu.address.model.appointment.AppointmentLocation;
 import seedu.address.model.appointment.AppointmentNote;
 import seedu.address.model.appointment.AppointmentStatus;
 import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new LinkAppointmentCommand object.
@@ -42,7 +43,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_APPOINTMENT,
                 PREFIX_LENGTH, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_NOTE, PREFIX_STATUS);
 
-        String clientName = argMultimap.getValue(PREFIX_NAME).get();
+        Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         AppointmentDateTime dateTime =
                 ParserUtil.parseAppointmentDateTime(argMultimap.getValue(PREFIX_APPOINTMENT).get());
@@ -58,7 +59,15 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
         AppointmentStatus status = ParserUtil.parseAppointmentStatus(
                 argMultimap.getValue(PREFIX_STATUS).orElse(AppointmentStatus.PLANNED));
 
-        Appointment appointment = new Appointment(dateTime, length, location, type, note, status);
+        Appointment appointment = new Appointment(
+                clientName,
+                dateTime,
+                length,
+                location,
+                type,
+                note,
+                status
+        );
 
         return new LinkAppointmentCommand(clientName, appointment);
     }

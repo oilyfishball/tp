@@ -6,6 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Name;
 
 /**
  * Creates an appointment and links it directly to a client (person).
@@ -34,10 +35,10 @@ public class LinkAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment linked: %1$s";
 
-    private final String clientName;
+    private final Name clientName;
     private final Appointment appointment;
 
-    public LinkAppointmentCommand(String clientName, Appointment appointment) {
+    public LinkAppointmentCommand(Name clientName, Appointment appointment) {
         requireNonNull(clientName);
         requireNonNull(appointment);
         this.clientName = clientName;
@@ -62,7 +63,7 @@ public class LinkAppointmentCommand extends Command {
             return false;
         }
         LinkAppointmentCommand otherCmd = (LinkAppointmentCommand) other;
-        return clientName.equalsIgnoreCase(otherCmd.clientName)
+        return clientName.fullName.equalsIgnoreCase(otherCmd.clientName.fullName)
                 && appointment.equals(otherCmd.appointment);
     }
 
