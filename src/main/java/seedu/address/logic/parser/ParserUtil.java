@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.AppointmentLength;
 import seedu.address.model.appointment.AppointmentLocation;
-import seedu.address.model.appointment.AppointmentNote;
+import seedu.address.model.appointment.AppointmentMessage;
 import seedu.address.model.appointment.AppointmentStatus;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Address;
@@ -202,11 +202,11 @@ public class ParserUtil {
      * Parses a {@code String note} into an {@code AppointmentNote}.
      * Optional; empty string means no note.
      */
-    public static AppointmentNote parseAppointmentNote(String note) {
-        if (note == null || note.trim().isEmpty()) {
-            return new AppointmentNote(AppointmentNote.NO_NOTE);
+    public static AppointmentMessage parseAppointmentMessage(String message) {
+        if (message == null || message.trim().isEmpty()) {
+            return new AppointmentMessage(AppointmentMessage.NO_MESSAGE);
         }
-        return new AppointmentNote(note.trim());
+        return new AppointmentMessage(message.trim());
     }
 
     /**

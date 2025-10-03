@@ -3,24 +3,24 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents notes attached to an appointment.
+ * Represents a message attached to an appointment.
  */
-public class AppointmentNote {
+public class AppointmentMessage {
 
-    public static final String NO_NOTE = "";
+    public static final String NO_MESSAGE = "";
 
     public final String value;
 
-    public AppointmentNote(String note) {
-        requireNonNull(note);
-        this.value = note.trim();
+    public AppointmentMessage(String msg) {
+        requireNonNull(msg);
+        this.value = msg.trim();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof AppointmentNote
-                && value.equals(((AppointmentNote) other).value));
+                || (other instanceof AppointmentMessage
+                && value.equals(((AppointmentMessage) other).value));
     }
 
     @Override
@@ -28,6 +28,7 @@ public class AppointmentNote {
         return value.hashCode();
     }
 
+    @Override
     public String toString() {
         return value.isEmpty() ? "none" : value;
     }

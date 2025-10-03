@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LENGTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
@@ -17,7 +17,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.AppointmentLength;
 import seedu.address.model.appointment.AppointmentLocation;
-import seedu.address.model.appointment.AppointmentNote;
+import seedu.address.model.appointment.AppointmentMessage;
 import seedu.address.model.appointment.AppointmentStatus;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Name;
@@ -32,7 +32,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_NAME, PREFIX_APPOINTMENT, PREFIX_LENGTH,
-                        PREFIX_LOCATION, PREFIX_TYPE, PREFIX_NOTE, PREFIX_STATUS);
+                        PREFIX_LOCATION, PREFIX_TYPE, PREFIX_MESSAGE, PREFIX_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_APPOINTMENT)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -41,7 +41,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_APPOINTMENT,
-                PREFIX_LENGTH, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_NOTE, PREFIX_STATUS);
+                PREFIX_LENGTH, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_MESSAGE, PREFIX_STATUS);
 
         Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
@@ -54,8 +54,8 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
                 argMultimap.getValue(PREFIX_LOCATION).orElse(AppointmentLocation.NO_LOCATION));
         AppointmentType type = ParserUtil.parseAppointmentType(
                 argMultimap.getValue(PREFIX_TYPE).orElse(AppointmentType.NO_TYPE));
-        AppointmentNote note = ParserUtil.parseAppointmentNote(
-                argMultimap.getValue(PREFIX_NOTE).orElse(AppointmentNote.NO_NOTE));
+        AppointmentMessage message = ParserUtil.parseAppointmentMessage(
+                argMultimap.getValue(PREFIX_MESSAGE).orElse(AppointmentMessage.NO_MESSAGE));
         AppointmentStatus status = ParserUtil.parseAppointmentStatus(
                 argMultimap.getValue(PREFIX_STATUS).orElse(AppointmentStatus.PLANNED));
 
@@ -65,7 +65,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
                 length,
                 location,
                 type,
-                note,
+                message,
                 status
         );
 

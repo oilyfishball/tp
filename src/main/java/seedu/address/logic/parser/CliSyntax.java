@@ -18,7 +18,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_LENGTH = new Prefix("/len");
     public static final Prefix PREFIX_LOCATION = new Prefix("/loc");
     public static final Prefix PREFIX_TYPE = new Prefix("/type");
-    public static final Prefix PREFIX_NOTE = new Prefix("/note");
+    public static final Prefix PREFIX_MESSAGE = new Prefix("/msg");
     public static final Prefix PREFIX_STATUS = new Prefix("/status");
 
 }

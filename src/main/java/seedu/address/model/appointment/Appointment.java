@@ -18,7 +18,7 @@ public class Appointment {
     private final AppointmentLength length;
     private final AppointmentLocation location;
     private final AppointmentType type;
-    private final AppointmentNote note;
+    private final AppointmentMessage message;
     private final AppointmentStatus status;
 
     /**
@@ -29,15 +29,15 @@ public class Appointment {
                        AppointmentLength length,
                        AppointmentLocation location,
                        AppointmentType type,
-                       AppointmentNote note,
+                       AppointmentMessage message,
                        AppointmentStatus status) {
-        requireAllNonNull(clientName, dateTime, length, location, type, note, status);
+        requireAllNonNull(clientName, dateTime, length, location, type, message, status);
         this.clientName = clientName;
         this.dateTime = dateTime;
         this.length = length;
         this.location = location;
         this.type = type;
-        this.note = note;
+        this.message = message;
         this.status = status;
     }
 
@@ -61,8 +61,8 @@ public class Appointment {
         return type;
     }
 
-    public AppointmentNote getNote() {
-        return note;
+    public AppointmentMessage getMessage() {
+        return message;
     }
 
     public AppointmentStatus getStatus() {
@@ -97,13 +97,13 @@ public class Appointment {
                 && length.equals(otherAppointment.length)
                 && location.equals(otherAppointment.location)
                 && type.equals(otherAppointment.type)
-                && note.equals(otherAppointment.note)
+                && message.equals(otherAppointment.message)
                 && status.equals(otherAppointment.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateTime, length, location, type, note, status);
+        return Objects.hash(dateTime, length, location, type, message, status);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Appointment {
                 .add("length", length)
                 .add("location", location)
                 .add("type", type)
-                .add("note", note)
+                .add("note", message)
                 .add("status", status)
                 .toString();
     }

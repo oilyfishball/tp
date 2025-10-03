@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -25,7 +26,7 @@ public class LinkAppointmentCommand extends Command {
             + "[/len MINUTES] "
             + "[/loc LOCATION] "
             + "[/type TYPE] "
-            + "[/note NOTES] "
+            + "[/msg NOTES] "
             + "[/status planned|confirmed|completed|cancelled]\n"
             + "Example: " + COMMAND_WORD + " "
             + "/n Alex Wu "
@@ -33,7 +34,7 @@ public class LinkAppointmentCommand extends Command {
             + "/len 90 "
             + "/loc Bukit Merah FSC "
             + "/type home-visit "
-            + "/note Bring consent form "
+            + "/msg Bring consent form "
             + "/status planned";
 
     public static final String MESSAGE_SUCCESS = "New appointment linked to %1$s: %2$s";
@@ -74,7 +75,7 @@ public class LinkAppointmentCommand extends Command {
         Person updatedClient = client.withAddedAppointment(appointment);
         model.setPerson(client, updatedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, appointment));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, Messages.format(appointment)));
     }
 
     @Override
