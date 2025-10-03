@@ -10,10 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status must be one of: planned, confirmed, completed, cancelled";
+        "Status must be one of: planned, confirmed, completed, cancelled";
     public static final String VALIDATION_REGEX = "planned|confirmed|completed|cancelled";
 
-    public static final AppointmentStatus PLANNED = new AppointmentStatus("planned");
+    public static final String PLANNED = "planned";
 
     public final String value;
 

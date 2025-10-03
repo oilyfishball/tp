@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentLength {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Length must be a positive integer number of minutes (e.g. 30, 60, 90)";
+        "Length must be a positive integer number of minutes (e.g. 30, 60, 90)";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
-    public static final AppointmentLength DEFAULT = new AppointmentLength("0");
+    public static final String NO_LENGTH = "";
 
     public final String value;
 
@@ -22,7 +22,7 @@ public class AppointmentLength {
     }
 
     public static boolean isValidLength(String test) {
-        return test.equals("0") || test.matches(VALIDATION_REGEX);
+        return test.equals(NO_LENGTH) || test.matches(VALIDATION_REGEX);
     }
 
     @Override

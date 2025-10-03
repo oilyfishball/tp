@@ -48,7 +48,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
                 ParserUtil.parseAppointmentDateTime(argMultimap.getValue(PREFIX_APPOINTMENT).get());
 
         AppointmentLength length = ParserUtil.parseAppointmentLength(
-                argMultimap.getValue(PREFIX_LENGTH).orElse(AppointmentLength.DEFAULT));
+                argMultimap.getValue(PREFIX_LENGTH).orElse(AppointmentLength.NO_LENGTH));
         AppointmentLocation location = ParserUtil.parseAppointmentLocation(
                 argMultimap.getValue(PREFIX_LOCATION).orElse(AppointmentLocation.NO_LOCATION));
         AppointmentType type = ParserUtil.parseAppointmentType(

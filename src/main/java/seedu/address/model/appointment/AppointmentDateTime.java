@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "DateTime must be in the format dd-MM-yyyy or dd-MM-yyyy HHmm, and must be valid calendar date/time.";
+        "DateTime must be in the format dd-MM-yyyy or dd-MM-yyyy HHmm, and must be valid calendar date/time.";
     // Very simple regex: date part mandatory, optional time part
     public static final String VALIDATION_REGEX =
             "^\\d{1,2}-\\d{1,2}-\\d{4}( \\d{4})?$";

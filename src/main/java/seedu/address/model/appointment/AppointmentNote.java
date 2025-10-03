@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class AppointmentNote {
 
-    public static final AppointmentNote NO_NOTE = new AppointmentNote("");
+    public static final String NO_NOTE = "";
 
     public final String value;
 

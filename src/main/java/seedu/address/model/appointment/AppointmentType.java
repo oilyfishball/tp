@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class AppointmentType {
 
-    public static final AppointmentType NO_TYPE = new AppointmentType("");
+    public static final String NO_TYPE = "";
 
     public final String value;
 

@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class AppointmentLocation {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Location can take any values but should not contain invalid symbols.";
+        "Location can take any values but should not contain invalid symbols.";
     public static final String VALIDATION_REGEX = "^[\\p{Alnum} ,.#\\-/()';&:]*$";
-    public static final AppointmentLocation NO_LOCATION = new AppointmentLocation("");
+    public static final String NO_LOCATION = "";
 
     public final String value;
 
