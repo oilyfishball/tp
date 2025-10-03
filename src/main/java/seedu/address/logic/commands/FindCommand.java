@@ -6,17 +6,20 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonQuery;
 
+/**
+ * Lists all clients from the address book based on {@code PersonQuery}
+ */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = "<TO BE ADDED>";
-    public static final String MESSAGE_SUCCESS = "<TO BE ADDED>";
 
     private final PersonQuery query;
 
+    /**
+     * @param query details for filtering clients
+     */
     public FindCommand(PersonQuery query) {
         requireNonNull(query);
         this.query = query;
@@ -26,31 +29,6 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(query::filter);
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
-}
-
-
-/**
-public class FindCommand extends Command {
-
-    public static final String COMMAND_WORD = "find";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
-
-    private final NameContainsKeywordsPredicate predicate;
-
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -67,14 +45,11 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return query.equals(otherFindCommand.query);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("predicate", predicate)
-                .toString();
+        return query.toString(new ToStringBuilder(this));
     }
 }
-**/
