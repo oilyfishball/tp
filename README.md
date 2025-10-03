@@ -15,11 +15,7 @@
     - **Editing** a client's information
     - **Deleting** a client's information
     - **Linking** an appointment to a client
-- The project simulates an ongoing software project for a desktop application (called _Heartlink_) used for managing
-  contact details for social workers.
-    - It is **written in OOP fashion**.
-    - It comes with a **reasonable level of user and developer documentation**.
-- For the detailed documentation of this project, see
+- For detailed documentation of this project, see
   the [HeartLink Product Website](https://ay2526s1-cs2103t-t09-1.github.io/tp/).
 - It is named `HeartLink` because it can help to link the needy with social workers more seamlessly.
 
