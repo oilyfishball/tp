@@ -30,6 +30,6 @@ public class AppointmentMessage {
 
     @Override
     public String toString() {
-        return value.isEmpty() ? "none" : value;
+        return value.isEmpty() ? "" : value;
     }
 }

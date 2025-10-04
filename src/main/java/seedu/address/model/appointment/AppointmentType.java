@@ -29,6 +29,6 @@ public class AppointmentType {
     }
 
     public String toString() {
-        return value.isEmpty() ? "unspecified" : value;
+        return value.isEmpty() ? "" : value;
     }
 }

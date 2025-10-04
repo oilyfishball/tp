@@ -27,7 +27,7 @@ public class AppointmentLocation {
 
     @Override
     public String toString() {
-        return value.isEmpty() ? "unspecified" : value;
+        return value.isEmpty() ? "" : value;
     }
 
     @Override

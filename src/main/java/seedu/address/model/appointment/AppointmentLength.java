@@ -38,6 +38,6 @@ public class AppointmentLength {
     }
 
     public String toString() {
-        return value.equals("0") ? "unspecified" : value + " min";
+        return value.equals("") ? "" : value;
     }
 }
