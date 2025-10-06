@@ -17,12 +17,19 @@ public class AppointmentDateTime {
 
     public final String value;
 
+    /**
+     * Constructs an {@code AppointmentDateTime} with the specified date-time string.
+     * The input must match the expected format.
+     */
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.value = dateTime;
     }
 
+    /**
+     * Returns true if the given string matches the date-time format.
+     */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
         // NOTE: Later you can plug in LocalDate/LocalDateTime parsing for stricter checks

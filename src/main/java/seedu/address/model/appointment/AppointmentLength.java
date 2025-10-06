@@ -15,6 +15,9 @@ public class AppointmentLength {
 
     public final String value;
 
+    /**
+     * Construct an appointment length (duration)
+     */
     public AppointmentLength(String length) {
         requireNonNull(length);
         checkArgument(isValidLength(length), MESSAGE_CONSTRAINTS);

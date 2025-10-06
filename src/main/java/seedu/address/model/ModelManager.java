@@ -156,7 +156,7 @@ public class ModelManager implements Model {
         addressBook.setAppointment(target, editedAppointment);
     }
 
-//=========== Filtered Appointment List Accessors =======================================================
+    //=========== Filtered Appointment List Accessors =======================================================
 
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {

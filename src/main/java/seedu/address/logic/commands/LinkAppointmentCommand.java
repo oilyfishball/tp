@@ -43,6 +43,10 @@ public class LinkAppointmentCommand extends Command {
     private final Name clientName;
     private final Appointment appointment;
 
+    /**
+     * Construct a LinkAppointmentCommand to link client with the specified appointment
+     * The relationship between clientName and appointment is one to many.
+     */
     public LinkAppointmentCommand(Name clientName, Appointment appointment) {
         requireNonNull(clientName);
         requireNonNull(appointment);

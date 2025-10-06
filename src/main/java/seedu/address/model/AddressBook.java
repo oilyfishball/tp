@@ -105,6 +105,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// appointment-level operations
 
+    /**
+     * Check whether the AddressBook contains the appointment or not
+     */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.contains(appointment);

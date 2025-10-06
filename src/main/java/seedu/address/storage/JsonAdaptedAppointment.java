@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -76,13 +78,14 @@ class JsonAdaptedAppointment {
         final AppointmentLength modelLength = new AppointmentLength(len);
 
         final AppointmentLocation modelLocation = new AppointmentLocation(
-                (location == null) ? "" : location);
+                Objects.requireNonNullElse(location, "")
+        );
 
         final AppointmentType modelType = new AppointmentType(
-                (type == null) ? "" : type);
+                Objects.requireNonNullElse(type, ""));
 
         final AppointmentMessage modelMessage = new AppointmentMessage(
-                (message == null) ? "" : message);
+                Objects.requireNonNullElse(message, ""));
 
         final String stat = (status == null) ? "planned" : status.trim().toLowerCase();
         if (!AppointmentStatus.isValidStatus(stat)) {
@@ -90,6 +93,7 @@ class JsonAdaptedAppointment {
         }
         final AppointmentStatus modelStatus = new AppointmentStatus(stat);
 
-        return new Appointment(ownerName, modelDateTime, modelLength, modelLocation, modelType, modelMessage, modelStatus);
+        return new Appointment(ownerName, modelDateTime,
+            modelLength, modelLocation, modelType, modelMessage, modelStatus);
     }
 }
