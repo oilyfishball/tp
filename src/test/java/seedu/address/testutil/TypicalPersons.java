@@ -39,7 +39,7 @@ public class TypicalPersons {
             new AppointmentLocation("Dental Clinic"),
             new AppointmentType("Health"),
             new AppointmentMessage("Routine checkup"),
-            new AppointmentStatus("Scheduled")
+            new AppointmentStatus("planned")
     );
 
     public static final Appointment MEETING_APPT = new Appointment(
@@ -49,7 +49,7 @@ public class TypicalPersons {
             new AppointmentLocation("NTU Library"),
             new AppointmentType("Meeting"),
             new AppointmentMessage("Project discussion"),
-            new AppointmentStatus("Scheduled")
+            new AppointmentStatus("planned")
     );
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
