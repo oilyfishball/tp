@@ -24,7 +24,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.rank.Rank;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -42,12 +41,12 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_RANK = "urgent";
-    public static final String VALID_APPOINTMENT_DATE_TIME = "20-10-2025 1400";
-    public static final String VALID_APPOINTMENT_LENGTH = "60";
-    public static final String VALID_APPOINTMENT_LOCATION = "Dental Clinic";
-    public static final String VALID_APPOINTMENT_TYPE = "Health";
-    public static final String VALID_APPOINTMENT_MESSAGE = "Routine checkup";
-    public static final String VALID_APPOINTMENT_STATUS = "planned";
+    private static final String VALID_APPOINTMENT_DATE_TIME = "20-10-2025 1400";
+    private static final String VALID_APPOINTMENT_LENGTH = "60";
+    private static final String VALID_APPOINTMENT_LOCATION = "Dental Clinic";
+    private static final String VALID_APPOINTMENT_MESSAGE = "Routine checkup";
+    private static final String VALID_APPOINTMENT_STATUS = "planned";
+    private static final String VALID_APPOINTMENT_TYPE = "Health";
 
     private static final String WHITESPACE = " \t\r\n";
 
