@@ -77,15 +77,23 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add /n NAME /p PHONE_NUMBER /e EMAIL /a ADDRESS [/r priority rank] [/t TAG]…​`
+
+Acceptable Values: 
+* For name: Any String is acceptable. 
+* For phone number: (+65)98765432 or (+65) 9876 5432 can be accepted. 
+* For email: It should contain a “@” and have string before and after. 
+* For address: Any string is acceptable 
+* For tag: Any string is acceptable 
+* For ranking priority: “stable” / “vulnerable” / “urgent” / “crisis” (case-insensitive) is acceptable.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add /n John Doe /p 98765432 /e johnd@example.com /a John street, block 123, #01-01 /rank stable`
+* `add /n Betsy Crowe /t friend /e betsycrowe@example.com /a Newgate Prison /p 91234567 /t criminal`
 
 ### Listing all persons : `list`
 
@@ -97,18 +105,25 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit OLD_NAME [/n NEW_NAME] [/p PHONE] [/e EMAIL] [/a ADDRESS] [/r RANK] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `OLD_NAME`. The old name refers to the person's name before editing.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the person’s tags by typing `/t` without specifying any tags after it.
+
+Acceptable Values:
+- Edit phone number: must be 8 digit integers, starting with 6, 8 or 9. Starting with country code (+65) is acceptable.
+- Edit email address: must be in `[name]@[email].[domain]` , e.g. `alexyeoh@xyz.io`
+- Combinations: Any combination is acceptable
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit John Doe /p 91234567 /e johndoe@example.com /rank urgent`  
+Edits the phone number and email address of John Doe to be `91234567`, `johndoe@example.com` respectively
+and ranks the contact as `urgent`.
+*  `edit Betsy Crownerrr /n Betsy Crower /t`  
+Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
@@ -191,10 +206,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/ NAME /p PHONE_NUMBER [/e EMAIL] [/a ADDRESS] [/t TAG]…​` <br> e.g., `add /n James Ho /p 22224444 /e jamesho@example.com /a 123, Clementi Rd, 1234665 /t friend /t colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit OLD_NAME [n/ NEW_NAME] [/p PHONE_NUMBER] [/e EMAIL] [/a ADDRESS] [/t TAG]…​`<br> e.g.,`edit James Tan /n James Lee /e jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
