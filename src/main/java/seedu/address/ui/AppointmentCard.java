@@ -35,6 +35,9 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML private Label length;
     @FXML private Label message;
 
+    /**
+     * Represents an appointment card component
+     */
     public AppointmentCard(Appointment appointment) {
         super(FXML);
         this.appointment = appointment;

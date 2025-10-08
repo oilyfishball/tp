@@ -15,6 +15,9 @@ public class AppointmentLocation {
 
     public final String value;
 
+    /**
+     * Construct an appointment location
+     */
     public AppointmentLocation(String location) {
         requireNonNull(location);
         checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);

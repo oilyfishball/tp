@@ -11,6 +11,9 @@ public class AppointmentMessage {
 
     public final String value;
 
+    /**
+     * Construct an appointment message
+     */
     public AppointmentMessage(String msg) {
         requireNonNull(msg);
         this.value = msg.trim();

@@ -5,7 +5,7 @@ package seedu.address.model.appointment.exceptions;
  * (Appointments are considered duplicates if they have the same identity).
  */
 public class DuplicateAppointmentException extends RuntimeException {
-  public DuplicateAppointmentException() {
-    super("Operation would result in duplicate appointments");
-  }
+    public DuplicateAppointmentException() {
+        super("Operation would result in duplicate appointments");
+    }
 }

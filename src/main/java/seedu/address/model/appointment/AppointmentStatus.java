@@ -17,6 +17,9 @@ public class AppointmentStatus {
 
     public final String value;
 
+    /**
+     * Create an appointment status
+     */
     public AppointmentStatus(String status) {
         requireNonNull(status);
         String normalized = status.toLowerCase();

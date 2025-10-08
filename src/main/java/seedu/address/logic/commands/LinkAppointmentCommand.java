@@ -39,10 +39,14 @@ public class LinkAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment linked to %1$s: %2$s";
     public static final String MESSAGE_NO_SUCH_PERSON = "No client found with the name: %1$s";
-
+    public static final String MESSAGE_DUPLICATE_APPOINTMENTS = "This appointment already exists in the address book.";
     private final Name clientName;
     private final Appointment appointment;
 
+    /**
+     * Construct a LinkAppointmentCommand to link client with the specified appointment
+     * The relationship between clientName and appointment is one to many.
+     */
     public LinkAppointmentCommand(Name clientName, Appointment appointment) {
         requireNonNull(clientName);
         requireNonNull(appointment);
@@ -67,13 +71,9 @@ public class LinkAppointmentCommand extends Command {
 
         // Attach appointment to the model (global list)
         if (model.hasAppointment(appointment)) {
-            throw new CommandException("This appointment already exists in the address book.");
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENTS);
         }
-        model.addAppointment(appointment);
-
-        // Replace person with updated version containing the appointment
-        Person updatedClient = client.withAddedAppointment(appointment);
-        model.setPerson(client, updatedClient);
+        model.addAppointmentWithPerson(appointment, client);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, Messages.format(appointment)));
     }

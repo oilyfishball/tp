@@ -22,6 +22,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -104,8 +105,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Rank updatedRank = editPersonDescriptor.getRank().orElse(personToEdit.getRank());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedRank);
+        List<Appointment> updatedAppointment = editPersonDescriptor.getAppointment()
+                .orElse(personToEdit.getAppointments());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+            updatedTags, updatedRank, updatedAppointment);
     }
 
     @Override
@@ -143,6 +146,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Rank rank;
+        private List<Appointment> appointments;
 
         public EditPersonDescriptor() {}
 
@@ -157,6 +161,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setRank(toCopy.rank);
+            setAppointment(toCopy.appointments);
         }
 
         /**
@@ -196,6 +201,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setAppointment(List<Appointment> appointments) {
+            this.appointments = appointments;
+        }
+
+        public Optional<List<Appointment>> getAppointment() {
+            return Optional.ofNullable(appointments);
         }
 
         /**
@@ -240,7 +253,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(rank, otherEditPersonDescriptor.rank);
+                    && Objects.equals(rank, otherEditPersonDescriptor.rank)
+                    && Objects.equals(appointments, otherEditPersonDescriptor.appointments);
         }
 
         @Override
@@ -252,6 +266,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("rank", rank)
+                    .add("appointment", appointments)
                     .toString();
         }
     }

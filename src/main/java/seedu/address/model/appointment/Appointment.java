@@ -93,7 +93,8 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return dateTime.equals(otherAppointment.dateTime)
+        return clientName.equals(otherAppointment.clientName)
+                && dateTime.equals(otherAppointment.dateTime)
                 && length.equals(otherAppointment.length)
                 && location.equals(otherAppointment.location)
                 && type.equals(otherAppointment.type)

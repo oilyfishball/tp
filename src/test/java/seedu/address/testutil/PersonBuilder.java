@@ -62,6 +62,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the appointment field to empty list
+     * Use for testing commands unrelated to appointments (e.g. AddCommand)
+     */
+    public PersonBuilder omitAppointment() {
+        this.appointments = new ArrayList<>();
+        return this;
+    }
+
+    /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
@@ -118,7 +127,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, rank);
+        return new Person(name, phone, email, address, tags, rank, appointments);
     }
 
 }

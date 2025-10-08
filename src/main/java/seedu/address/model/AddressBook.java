@@ -91,7 +91,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -100,16 +99,25 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        // remove associated appointments
+        key.getAppointments().forEach(appointments::remove);
         persons.remove(key);
     }
 
     //// appointment-level operations
 
+    /**
+     * Check whether the AddressBook contains the appointment or not
+     */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.contains(appointment);
     }
 
+    /**
+     * Add appointment to the {@code AddressBook} and update the
+     * {@code persons} list if applicable.
+     */
     public void addAppointment(Appointment a) {
         appointments.add(a);
     }
@@ -120,6 +128,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
+        /*
+        TODO: If the client name is edited from A to B, the target must be removed from A.
+        */
         appointments.setAppointment(target, editedAppointment);
     }
 

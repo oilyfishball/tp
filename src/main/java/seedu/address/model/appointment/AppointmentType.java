@@ -11,6 +11,9 @@ public class AppointmentType {
 
     public final String value;
 
+    /**
+     * Create an appointment type
+     */
     public AppointmentType(String type) {
         requireNonNull(type);
         this.value = type.trim();
