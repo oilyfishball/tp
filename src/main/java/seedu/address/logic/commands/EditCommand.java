@@ -11,6 +11,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.*;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -45,8 +46,15 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Successfully edited %1$s's information to:\n";
+    public static final String MESSAGE_INVALID_SYNTAX = """
+             Invalid syntax. Please ensure that the command adheres to the following:
+             - Edit name: `edit [name] /n [name]`
+             - Edit tags (able to chain more than 1 tag): `edit [name] /t [tag]`
+             - Edit home address: `edit [name] /a [address]`
+             - Edit phone number: `edit [name] /p [phone number]`
+             - Edit email address: `edit [name] /e [email address]`
+             - Combinations: `edit [name] /t [tag] /p [phone number] ...`""";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final String indexName;
@@ -61,7 +69,7 @@ public class EditCommand extends Command {
         requireNonNull(indexName);
         requireNonNull(editPersonDescriptor);
 
-        this.indexName = indexName;
+        this.indexName = indexName.trim();
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -77,22 +85,21 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Map<String, Person> personMap = new HashMap<>();
+        Map<String, Integer> idmap = new HashMap<>();
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Person curr = lastShownList.get(i);
-            String name = curr.getName().toString().trim().toLowerCase();
-            personMap.put(name , curr);
+            String name = curr.getName().toString().trim();
+            idmap.put(name, i);
         }
 
+        if (!idmap.containsKey(this.indexName)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
-//        if (index.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
-//
-//        Person personToEdit = lastShownList.get(index.getZeroBased());
-        String newName = indexName.trim().toLowerCase();
-        Person personToEdit = personMap.get(newName);
+        int idx = idmap.get(this.indexName);
+        Index index = Index.fromZeroBased(idx);
+        Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -101,9 +108,15 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+
+        return new CommandResult(getReturnString(editedPerson));
     }
 
+    private String getReturnString(Person editedPerson) {
+        String result = String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName());
+        result += Messages.format(editedPerson);
+        return result;
+    }
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.

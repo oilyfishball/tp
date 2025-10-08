@@ -78,4 +78,11 @@ public class Email {
         return value.hashCode();
     }
 
+    /**
+     * Returns a boolean representing whether email is empty
+     * @return true if there is no email, false if there is an email
+     */
+    public boolean isEmpty() {
+        return value.isEmpty();
+    }
 }
