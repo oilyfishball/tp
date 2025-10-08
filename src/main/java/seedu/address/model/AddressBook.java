@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
@@ -91,7 +92,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -100,6 +100,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        // remove associated appointments
+        key.getAppointments().forEach(appointments::remove);
         persons.remove(key);
     }
 
@@ -113,6 +115,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.contains(appointment);
     }
 
+    /**
+     * Add appointment to the {@code AddressBook} and update the
+     * {@code persons} list if applicable.
+     */
     public void addAppointment(Appointment a) {
         appointments.add(a);
     }

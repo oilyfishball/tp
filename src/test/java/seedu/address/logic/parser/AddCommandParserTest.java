@@ -61,6 +61,7 @@ public class AddCommandParserTest {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_FRIEND)
                 .withRank(VALID_RANK_STABLE)
+                .omitAppointment()
                 .build();
 
         // whitespace only preamble
@@ -74,6 +75,7 @@ public class AddCommandParserTest {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withRank(VALID_RANK_STABLE)
+                .omitAppointment()
                 .build();
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

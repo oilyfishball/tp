@@ -39,7 +39,7 @@ public class LinkAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment linked to %1$s: %2$s";
     public static final String MESSAGE_NO_SUCH_PERSON = "No client found with the name: %1$s";
-
+    public static final String MESSAGE_DUPLICATE_APPOINTMENTS = "This appointment already exists in the address book.";
     private final Name clientName;
     private final Appointment appointment;
 
@@ -71,7 +71,7 @@ public class LinkAppointmentCommand extends Command {
 
         // Attach appointment to the model (global list)
         if (model.hasAppointment(appointment)) {
-            throw new CommandException("This appointment already exists in the address book.");
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENTS);
         }
         model.addAppointment(appointment);
 

@@ -51,6 +51,16 @@ public class TypicalPersons {
             new AppointmentStatus("planned")
     );
 
+    public static final Appointment MEETING_BOB = new Appointment(
+        new Name("Bob Choo"),
+        new AppointmentDateTime("20-10-2025 1400"),
+        new AppointmentLength("60"),
+        new AppointmentLocation("Dental Clinic"),
+        new AppointmentType("Health"),
+        new AppointmentMessage("Routine checkup"),
+        new AppointmentStatus("planned")
+    );
+
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withTags("friends").withRank("stable")
@@ -86,20 +96,32 @@ public class TypicalPersons {
             .withRank("").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withRank(VALID_RANK_STABLE).build();
+            .withRank(VALID_RANK_STABLE).withAppointments(MEETING_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Extract list of appointments from the given persons array
+     */
+    public static List<Appointment> extractAppointmentsFromPersons(List<Person> persons) {
+        return persons.stream()
+            .flatMap(person -> person.getAppointments().stream())
+            .toList();
+    }
+
+    /**
+     * Returns a typical address book
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
+        List<Person> samplePersons = getTypicalPersons();
+        for (Person person : samplePersons) {
             ab.addPerson(person);
         }
+        extractAppointmentsFromPersons(samplePersons)
+            .forEach(ab::addAppointment);
         return ab;
     }
 

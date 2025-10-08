@@ -14,6 +14,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.appointment.AppointmentLength;
+import seedu.address.model.appointment.AppointmentLocation;
+import seedu.address.model.appointment.AppointmentMessage;
+import seedu.address.model.appointment.AppointmentStatus;
+import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -36,6 +42,12 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_RANK = "urgent";
+    public static final String VALID_APPOINTMENT_DATE_TIME = "20-10-2025 1400";
+    public static final String VALID_APPOINTMENT_LENGTH = "60";
+    public static final String VALID_APPOINTMENT_LOCATION = "Dental Clinic";
+    public static final String VALID_APPOINTMENT_TYPE = "Health";
+    public static final String VALID_APPOINTMENT_MESSAGE = "Routine checkup";
+    public static final String VALID_APPOINTMENT_STATUS = "planned";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -208,15 +220,80 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRank_validValueWithoutWhitespace_returnsRank() throws Exception {
-        Rank expectedRank = new Rank(VALID_RANK);
-        assertEquals(expectedRank, ParserUtil.parseRank(VALID_RANK));
+    public void parseAppointmentDateTime_validValueWithoutWhitespace_returnsAppointmentDateTime() throws Exception {
+        AppointmentDateTime expectedDateTime = new AppointmentDateTime(VALID_APPOINTMENT_DATE_TIME);
+        assertEquals(expectedDateTime, ParserUtil.parseAppointmentDateTime(VALID_APPOINTMENT_DATE_TIME));
     }
 
     @Test
-    public void parseRank_validValueWithWhitespace_returnsTrimmedRank() throws Exception {
-        String rankWithWhitespace = WHITESPACE + VALID_RANK + WHITESPACE;
-        Rank expectedRank = new Rank(VALID_RANK);
-        assertEquals(expectedRank, ParserUtil.parseRank(rankWithWhitespace));
+    public void parseAppointmentDateTime_validValueWithWhitespace_returnsTrimmedAppointmentDateTime() throws Exception {
+        String dateTimeWithWhitespace = WHITESPACE + VALID_APPOINTMENT_DATE_TIME + WHITESPACE;
+        AppointmentDateTime expectedDateTime = new AppointmentDateTime(VALID_APPOINTMENT_DATE_TIME);
+        assertEquals(expectedDateTime, ParserUtil.parseAppointmentDateTime(dateTimeWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointmentLength_validValueWithoutWhitespace_returnsAppointmentLength() throws Exception {
+        AppointmentLength expectedLength = new AppointmentLength(VALID_APPOINTMENT_LENGTH);
+        assertEquals(expectedLength, ParserUtil.parseAppointmentLength(VALID_APPOINTMENT_LENGTH));
+    }
+
+    @Test
+    public void parseAppointmentLength_validValueWithWhitespace_returnsTrimmedAppointmentLength() throws Exception {
+        String lengthWithWhitespace = WHITESPACE + VALID_APPOINTMENT_LENGTH + WHITESPACE;
+        AppointmentLength expectedLength = new AppointmentLength(VALID_APPOINTMENT_LENGTH);
+        assertEquals(expectedLength, ParserUtil.parseAppointmentLength(lengthWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointmentLocation_validValueWithoutWhitespace_returnsAppointmentLocation() throws Exception {
+        AppointmentLocation expectedLocation = new AppointmentLocation(VALID_APPOINTMENT_LOCATION);
+        assertEquals(expectedLocation, ParserUtil.parseAppointmentLocation(VALID_APPOINTMENT_LOCATION));
+    }
+
+    @Test
+    public void parseAppointmentLocation_validValueWithWhitespace_returnsTrimmedAppointmentLocation() throws Exception {
+        String locationWithWhitespace = WHITESPACE + VALID_APPOINTMENT_LOCATION + WHITESPACE;
+        AppointmentLocation expectedLocation = new AppointmentLocation(VALID_APPOINTMENT_LOCATION);
+        assertEquals(expectedLocation, ParserUtil.parseAppointmentLocation(locationWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointmentType_validValueWithoutWhitespace_returnsAppointmentType() throws Exception {
+        AppointmentType expectedType = new AppointmentType(VALID_APPOINTMENT_TYPE);
+        assertEquals(expectedType, ParserUtil.parseAppointmentType(VALID_APPOINTMENT_TYPE));
+    }
+
+    @Test
+    public void parseAppointmentType_validValueWithWhitespace_returnsTrimmedAppointmentType() throws Exception {
+        String typeWithWhitespace = WHITESPACE + VALID_APPOINTMENT_TYPE + WHITESPACE;
+        AppointmentType expectedType = new AppointmentType(VALID_APPOINTMENT_TYPE);
+        assertEquals(expectedType, ParserUtil.parseAppointmentType(typeWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointmentMessage_validValueWithoutWhitespace_returnsAppointmentMessage() throws Exception {
+        AppointmentMessage expectedMessage = new AppointmentMessage(VALID_APPOINTMENT_MESSAGE);
+        assertEquals(expectedMessage, ParserUtil.parseAppointmentMessage(VALID_APPOINTMENT_MESSAGE));
+    }
+
+    @Test
+    public void parseAppointmentMessage_validValueWithWhitespace_returnsTrimmedAppointmentMessage() throws Exception {
+        String messageWithWhitespace = WHITESPACE + VALID_APPOINTMENT_MESSAGE + WHITESPACE;
+        AppointmentMessage expectedMessage = new AppointmentMessage(VALID_APPOINTMENT_MESSAGE);
+        assertEquals(expectedMessage, ParserUtil.parseAppointmentMessage(messageWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointmentStatus_validValueWithoutWhitespace_returnsAppointmentStatus() throws Exception {
+        AppointmentStatus expectedStatus = new AppointmentStatus(VALID_APPOINTMENT_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseAppointmentStatus(VALID_APPOINTMENT_STATUS));
+    }
+
+    @Test
+    public void parseAppointmentStatus_validValueWithWhitespace_returnsTrimmedAppointmentStatus() throws Exception {
+        String statusWithWhitespace = WHITESPACE + VALID_APPOINTMENT_STATUS + WHITESPACE;
+        AppointmentStatus expectedStatus = new AppointmentStatus(VALID_APPOINTMENT_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseAppointmentStatus(statusWithWhitespace));
     }
 }

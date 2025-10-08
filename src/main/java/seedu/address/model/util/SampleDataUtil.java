@@ -33,27 +33,27 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), new Rank("stable"),
-                getSampleAppointments("Alex Yeoh", 2)),
+                getSampleAppointmentsByIndices("Alex Yeoh", 2)),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends") , new Rank("stable"),
-                getSampleAppointments("Bernice Yu", 1)),
+                getSampleAppointmentsByIndices("Bernice Yu", 1)),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours") , new Rank("stable"),
-                getSampleAppointments("Charlotte Oliveiro", 0)),
+                getSampleAppointmentsByIndices("Charlotte Oliveiro", 0)),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"), new Rank("urgent"),
-                getSampleAppointments("David Li")),
+                getSampleAppointmentsByIndices("David Li")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"), new Rank("vulnerable"),
-                getSampleAppointments("Irfan Ibrahim")),
+                getSampleAppointmentsByIndices("Irfan Ibrahim")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"), new Rank("crisis"),
-                getSampleAppointments("Roy Balakrishnan"))
+                getSampleAppointmentsByIndices("Roy Balakrishnan"))
         };
     }
 
@@ -63,7 +63,7 @@ public class SampleDataUtil {
      *                If {@code indices} is not specified, this method will return an
      *                empty list.
      */
-    public static List<Appointment> getSampleAppointments(String clientName, int... indices) {
+    public static List<Appointment> getSampleAppointmentsByIndices(String clientName, int... indices) {
         List<Appointment> sampleAppointments = List.of(
             new Appointment(
                 new Name(clientName),
@@ -101,11 +101,26 @@ public class SampleDataUtil {
         return selected;
     }
 
+    /**
+     * Extract list of appointments from the given persons array
+     */
+    public static List<Appointment> extractAppointmentsFromPersons(Person[] persons) {
+        return List.of(persons).stream()
+            .flatMap(person -> person.getAppointments().stream())
+            .toList();
+    }
+
+    /**
+     * Load sample address book
+     */
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
+        Person[] samplePersons = getSamplePersons();
+        for (Person samplePerson : samplePersons) {
             sampleAb.addPerson(samplePerson);
         }
+        extractAppointmentsFromPersons(samplePersons)
+            .forEach(sampleAb::addAppointment);
         return sampleAb;
     }
 
