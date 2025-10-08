@@ -62,12 +62,4 @@ public class Rank {
     public String toString() {
         return rankName;
     }
-
-    /**
-     * Returns a boolean representing whether rank is empty
-     * @return true if there is no rank, false if there is a rank
-     */
-    public boolean isEmpty() {
-        return rankName.isEmpty();
-    }
 }

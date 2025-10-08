@@ -58,7 +58,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final String indexName;
-//    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
@@ -72,14 +71,6 @@ public class EditCommand extends Command {
         this.indexName = indexName.trim();
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
-
-//    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-//        requireNonNull(index);
-//        requireNonNull(editPersonDescriptor);
-//
-//        this.index = index;
-//        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-//    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -147,8 +138,6 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
 
-//        return index.equals(otherEditCommand.index)
-//                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
         return indexName.equals(otherEditCommand.indexName)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
@@ -157,7 +146,6 @@ public class EditCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("indexName", indexName)
-//                .add("indexName", index)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
