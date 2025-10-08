@@ -53,6 +53,7 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+            person.getAppointments().forEach(addressBook::addAppointment);
         }
         return addressBook;
     }
