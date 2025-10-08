@@ -15,6 +15,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.appointment.AppointmentLength;
+import seedu.address.model.appointment.AppointmentLocation;
+import seedu.address.model.appointment.AppointmentMessage;
+import seedu.address.model.appointment.AppointmentStatus;
+import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,14 +30,48 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
+    // Sample appointments
+    public static final Appointment DENTIST_APPT = new Appointment(
+            new Name("Benson Meier"),
+            new AppointmentDateTime("20-10-2025 1400"),
+            new AppointmentLength("60"),
+            new AppointmentLocation("Dental Clinic"),
+            new AppointmentType("Health"),
+            new AppointmentMessage("Routine checkup"),
+            new AppointmentStatus("planned")
+    );
+
+    public static final Appointment MEETING_APPT = new Appointment(
+            new Name("Alice Pauline"),
+            new AppointmentDateTime("21-10-2025 1030"),
+            new AppointmentLength("90"),
+            new AppointmentLocation("NTU Library"),
+            new AppointmentType("Meeting"),
+            new AppointmentMessage("Project discussion"),
+            new AppointmentStatus("planned")
+    );
+
+    public static final Appointment MEETING_BOB = new Appointment(
+        new Name("Bob Choo"),
+        new AppointmentDateTime("20-10-2025 1400"),
+        new AppointmentLength("60"),
+        new AppointmentLocation("Dental Clinic"),
+        new AppointmentType("Health"),
+        new AppointmentMessage("Routine checkup"),
+        new AppointmentStatus("planned")
+    );
+
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").withRank("stable").build();
+            .withPhone("94351253").withTags("friends").withRank("stable")
+            .withAppointments(MEETING_APPT)
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withRank("stable").build();
+            .withTags("owesMoney", "friends").withRank("stable")
+            .withAppointments(DENTIST_APPT)
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withRank("stable").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -54,20 +96,32 @@ public class TypicalPersons {
             .withRank("").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withRank(VALID_RANK_STABLE).build();
+            .withRank(VALID_RANK_STABLE).withAppointments(MEETING_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Extract list of appointments from the given persons array
+     */
+    public static List<Appointment> extractAppointmentsFromPersons(List<Person> persons) {
+        return persons.stream()
+            .flatMap(person -> person.getAppointments().stream())
+            .toList();
+    }
+
+    /**
+     * Returns a typical address book
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
+        List<Person> samplePersons = getTypicalPersons();
+        for (Person person : samplePersons) {
             ab.addPerson(person);
         }
+        extractAppointmentsFromPersons(samplePersons)
+            .forEach(ab::addAppointment);
         return ab;
     }
 
