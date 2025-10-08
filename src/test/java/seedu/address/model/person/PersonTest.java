@@ -7,10 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RANK_URGENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.DENTIST_APPT;
+import static seedu.address.testutil.TypicalPersons.MEETING_APPT;
 
 import org.junit.jupiter.api.Test;
 
@@ -88,13 +91,27 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different ranks -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRank(VALID_RANK_URGENT).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different appointments -> returns false
+        // detailed equality check is in {@code AppointmentTest}
+        editedAlice = new PersonBuilder(ALICE).withAppointments(DENTIST_APPT).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // one appointment is a subset of another -> returns false
+        editedAlice = new PersonBuilder(ALICE).withAppointments(MEETING_APPT, DENTIST_APPT).build();
+        assertFalse(ALICE.equals(editedAlice));
+
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
-                + ", rank=" + ALICE.getRank() + "}";
+                + ", rank=" + ALICE.getRank() + ", appointments=" + ALICE.getAppointments() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -3,11 +3,17 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LENGTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -39,6 +45,12 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_RANK_STABLE = "stable";
     public static final String VALID_RANK_URGENT = "urgent";
+    public static final String VALID_APPOINTMENT_DATE_TIME = "20-10-2025 1400";
+    public static final String VALID_APPOINTMENT_LENGTH = "60";
+    public static final String VALID_APPOINTMENT_LOCATION = "Dental Clinic";
+    public static final String VALID_APPOINTMENT_TYPE = "Health";
+    public static final String VALID_APPOINTMENT_MESSAGE = "Routine checkup";
+    public static final String VALID_APPOINTMENT_STATUS = "planned";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,6 +64,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String RANK_DESC_STABLE = " " + PREFIX_RANK + VALID_RANK_STABLE;
     public static final String RANK_DESC_URGENT = " " + PREFIX_RANK + VALID_RANK_URGENT;
+
+    // Appointments
+    public static final String APPOINTMENT_DATE_TIME_DESC_BOB = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_DATE_TIME;
+    public static final String APPOINTMENT_LENGTH_DESC_BOB = " " + PREFIX_LENGTH + VALID_APPOINTMENT_LENGTH;
+    public static final String APPOINTMENT_LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_APPOINTMENT_LOCATION;
+    public static final String APPOINTMENT_TYPE_DESC_BOB = " " + PREFIX_TYPE + VALID_APPOINTMENT_TYPE;
+    public static final String APPOINTMENT_MESSAGE_DESC_BOB = " " + PREFIX_MESSAGE + VALID_APPOINTMENT_MESSAGE;
+    public static final String APPOINTMENT_STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_APPOINTMENT_STATUS;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
