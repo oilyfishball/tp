@@ -73,11 +73,7 @@ public class LinkAppointmentCommand extends Command {
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENTS);
         }
-        model.addAppointment(appointment);
-
-        // Replace person with updated version containing the appointment
-        Person updatedClient = client.withAddedAppointment(appointment);
-        model.setPerson(client, updatedClient);
+        model.addAppointmentWithPerson(appointment, client);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, Messages.format(appointment)));
     }

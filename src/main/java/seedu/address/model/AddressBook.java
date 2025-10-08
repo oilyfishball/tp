@@ -129,6 +129,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
+        /*
+        TODO: If the client name is edited from A to B, the target must be removed from A.
+        */
         appointments.setAppointment(target, editedAppointment);
     }
 

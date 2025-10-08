@@ -151,6 +151,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addAppointmentWithPerson(Appointment appointment, Person client) {
+        Person updatedClient = client.withAddedAppointment(appointment);
+        setPerson(client, updatedClient);
+        addAppointment(appointment);
+    }
+
+    @Override
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);

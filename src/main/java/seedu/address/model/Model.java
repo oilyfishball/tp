@@ -99,10 +99,16 @@ public interface Model {
     void deleteAppointment(Appointment target);
 
     /**
-     * Adds the given appointment.
+     * Adds the given appointment
      * {@code appointment} must not already exist in the address book.
      */
     void addAppointment(Appointment appointment);
+
+    /**
+     * A combination of Person::withAddedAppointment, Model::setPerson
+     * and Model::addAppointment.
+     */
+    void addAppointmentWithPerson(Appointment appointment, Person client);
 
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.

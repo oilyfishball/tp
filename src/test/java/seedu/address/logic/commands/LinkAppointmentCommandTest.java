@@ -46,9 +46,7 @@ public class LinkAppointmentCommandTest {
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
             client.getName(), appt);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Person updatedClient = client.withAddedAppointment(appt);
-        expectedModel.setPerson(client, updatedClient);
-        expectedModel.addAppointment(appt);
+        expectedModel.addAppointmentWithPerson(appt, client);
         assertCommandSuccess(cmd, model, String.format(
             LinkAppointmentCommand.MESSAGE_SUCCESS, client.getName(),
             Messages.format(appt)), expectedModel);
@@ -64,9 +62,7 @@ public class LinkAppointmentCommandTest {
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
             client.getName(), appt);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.addAppointment(appt);
-        Person updatedClient = client.withAddedAppointment(appt);
-        expectedModel.setPerson(client, updatedClient);
+        expectedModel.addAppointmentWithPerson(appt, client);
         assertCommandSuccess(cmd, model, String.format(
             LinkAppointmentCommand.MESSAGE_SUCCESS, client.getName(),
             Messages.format(appt)), expectedModel);
