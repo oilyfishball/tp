@@ -13,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.rank.Rank;
+import seedu.address.model.rank.RankType;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,7 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = Email.NO_EMAIL;
     public static final String DEFAULT_ADDRESS = Address.NO_ADDRESS;
-    public static final String DEFAULT_RANK = Rank.NO_RANK;
+    public static final String DEFAULT_RANK = RankType.NONE.toString();
 
     private Name name;
     private Phone phone;

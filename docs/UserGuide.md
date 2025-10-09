@@ -77,7 +77,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add /n NAME /p PHONE_NUMBER /e EMAIL /a ADDRESS [/r priority rank] [/t TAG]…​`
+Format: `add /n NAME /p PHONE_NUMBER [/e EMAIL] [/a ADDRESS] [/r RANK] [/t TAG]…​`
 
 Acceptable Values: 
 * For name: Any String is acceptable. 
@@ -92,7 +92,7 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add /n John Doe /p 98765432 /e johnd@example.com /a John street, block 123, #01-01 /rank stable`
+* `add /n John Doe /p 98765432 /e johnd@example.com /a John street, block 123, #01-01 /r stable`
 * `add /n Betsy Crowe /t friend /e betsycrowe@example.com /a Newgate Prison /p 91234567 /t criminal`
 
 ### Listing all persons : `list`
@@ -229,7 +229,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/ NAME /p PHONE_NUMBER [/e EMAIL] [/a ADDRESS] [/t TAG]…​` <br> e.g., `add /n James Ho /p 22224444 /e jamesho@example.com /a 123, Clementi Rd, 1234665 /t friend /t colleague`
+**Add** | `add n/ NAME /p PHONE_NUMBER [/e EMAIL] [/a ADDRESS] [/r RANK] [/t TAG]…​` <br> e.g., `add /n James Ho /p 22224444 /e jamesho@example.com /a 123, Clementi Rd, 1234665 /t friend /t colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit OLD_NAME [n/ NEW_NAME] [/p PHONE_NUMBER] [/e EMAIL] [/a ADDRESS] [/t TAG]…​`<br> e.g.,`edit James Tan /n James Lee /e jameslee@example.com`

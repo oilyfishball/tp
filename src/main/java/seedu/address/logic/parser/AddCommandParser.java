@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.rank.Rank;
+import seedu.address.model.rank.RankType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(Email.NO_EMAIL));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(Address.NO_ADDRESS));
-        Rank rank = ParserUtil.parseRank(argMultimap.getValue(PREFIX_RANK).orElse(Rank.NO_RANK));
+        Rank rank = ParserUtil.parseRank(argMultimap.getValue(PREFIX_RANK).orElse(RankType.NONE.toString()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, tagList, rank);

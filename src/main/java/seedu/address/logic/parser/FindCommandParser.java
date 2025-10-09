@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonQuery;
 import seedu.address.model.person.Phone;
 import seedu.address.model.rank.Rank;
+import seedu.address.model.rank.RankType;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -72,7 +73,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         var tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         query.setTags(tags);
         if (argMultimap.getValue(PREFIX_RANK).isPresent()) {
-            Rank rank = ParserUtil.parseRank(argMultimap.getValue(PREFIX_RANK).orElse(Rank.NO_RANK));
+            Rank rank = ParserUtil.parseRank(argMultimap
+                    .getValue(PREFIX_RANK)
+                    .orElse(RankType.NONE.toString()));
             query = query.setRank(rank);
         }
         return new FindCommand(query);

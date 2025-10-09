@@ -26,6 +26,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.rank.RankType;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -43,8 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_RANK_STABLE = "stable";
-    public static final String VALID_RANK_URGENT = "urgent";
+    public static final String VALID_RANK_STABLE = RankType.STABLE.toString();
+    public static final String VALID_RANK_URGENT = RankType.URGENT.toString();
     public static final String VALID_APPOINTMENT_DATE_TIME = "20-10-2025 1400";
     public static final String VALID_APPOINTMENT_LENGTH = "60";
     public static final String VALID_APPOINTMENT_LOCATION = "Dental Clinic";
