@@ -30,7 +30,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonQuery;
-import seedu.address.testutil.*;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TypicalNames;
 
 public class AddressBookParserTest {
 

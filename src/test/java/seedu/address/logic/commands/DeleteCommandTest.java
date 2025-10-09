@@ -7,20 +7,19 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalNames.*;
+import static seedu.address.testutil.TypicalNames.NAME_ALICE_PAULINE;
+import static seedu.address.testutil.TypicalNames.NAME_BENSON_MEIER;
+import static seedu.address.testutil.TypicalNames.NAME_DOES_NOT_EXIST;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.TypicalNames;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -75,11 +74,14 @@ public class DeleteCommandTest {
      */
     @Test
     public void execute_invalidNameFilteredList_throwsCommandException() {
+        // update filtered list to show only the first person
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Name notInViewButInBookName = NAME_BENSON_MEIER;
         // ensures that notInViewButInBookName is still in address book list
-        assertTrue(model.getAddressBook().getPersonList().stream().anyMatch(p -> p.getName().equals(notInViewButInBookName)));
+        assertTrue(model.getAddressBook().getPersonList().stream()
+                .anyMatch(p -> p.getName().equals(notInViewButInBookName)));
+        // try to delete someone whose name is in the address book, but not in the filtered list
         DeleteCommand deleteCommand = new DeleteCommand(notInViewButInBookName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_DOES_NOT_EXIST);
