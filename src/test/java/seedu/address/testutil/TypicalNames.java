@@ -10,4 +10,5 @@ public class TypicalNames {
     public static final Name NAME_ALICE_PAULINE = new Name("Alice Pauline");
     public static final Name NAME_BENSON_MEIER = new Name("Benson Meier");
     public static final Name NAME_CARL_KURZ = new Name("Carl Kurz");
+    public static final Name NAME_INVALID = new Name("Nonexistent Name");
 }
