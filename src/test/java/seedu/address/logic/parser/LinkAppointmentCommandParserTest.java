@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_STATUS_DE
 import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_TYPE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CREATE_FLAG;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_DATE_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;

@@ -225,6 +225,12 @@ public class ParserUtil {
         return new AppointmentStatus(trimmed);
     }
 
+    /**
+     * Parses a {@code String flag} into an {@code AppointmentFlag}.
+     * @param flag String to parse
+     * @return An appointment flag
+     * @throws ParseException
+     */
     public static AppointmentFlag parseAppointmentFlag(String flag) throws ParseException {
         if (flag == null || flag.trim().isEmpty()) {
             throw new ParseException("Invalid Flag!");

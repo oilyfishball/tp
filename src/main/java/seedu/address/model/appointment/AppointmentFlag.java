@@ -3,6 +3,10 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the command flag of an appointment.
+ * Must be one of c, d or e.
+ */
 public class AppointmentFlag {
     public static final String MESSAGE_CONSTRAINTS =
             "Flag must be either -c for create, -d for delete or -e for edit.";

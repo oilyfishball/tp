@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -51,13 +50,6 @@ public class LinkAppointmentCommand extends Command {
      * Construct a LinkAppointmentCommand to link client with the specified appointment
      * The relationship between clientName and appointment is one to many.
      */
-//    public LinkAppointmentCommand(Name clientName, Appointment appointment) {
-//        requireNonNull(clientName);
-//        requireNonNull(appointment);
-//        this.clientName = clientName;
-//        this.appointment = appointment;
-//    }
-
     public LinkAppointmentCommand(AppointmentFlag flag, Name clientName, Appointment appointment) {
         requireNonNull(clientName);
         requireNonNull(appointment);
