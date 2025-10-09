@@ -21,7 +21,7 @@ public class DurationUtil {
      */
     public static Duration durationFromString(String durationStr) {
         if (durationStr == null || durationStr.isEmpty()) {
-            return null;
+            return Duration.ZERO;
         }
         int minutes = Integer.parseInt(durationStr);
         return Duration.ofMinutes(minutes);

@@ -45,6 +45,6 @@ public class AppointmentLength {
     }
 
     public String toString() {
-        return duration.isZero() ? "0" : DurationUtil.stringFromDuration(duration);
+        return DurationUtil.stringFromDuration(duration);
     }
 }
