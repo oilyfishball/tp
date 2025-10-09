@@ -84,19 +84,19 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Map<String, Integer> idmap = new HashMap<>();
+        Map<String, Integer> idMap = new HashMap<>();
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Person curr = lastShownList.get(i);
             String name = curr.getName().toString().trim();
-            idmap.put(name, i);
+            idMap.put(name, i);
         }
 
-        if (!idmap.containsKey(this.indexName)) {
+        if (!idMap.containsKey(this.indexName)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        int idx = idmap.get(this.indexName);
+        int idx = idMap.get(this.indexName);
         Index index = Index.fromZeroBased(idx);
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
