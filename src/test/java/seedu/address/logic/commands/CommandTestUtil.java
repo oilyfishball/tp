@@ -44,8 +44,10 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_RANK_CRISIS = RankType.CRISIS.toString();
     public static final String VALID_RANK_STABLE = RankType.STABLE.toString();
     public static final String VALID_RANK_URGENT = RankType.URGENT.toString();
+    public static final String VALID_RANK_VULNERABLE = RankType.VULNERABLE.toString();
     public static final String VALID_APPOINTMENT_DATE_TIME = "20-10-2025 1400";
     public static final String VALID_APPOINTMENT_LENGTH = "60";
     public static final String VALID_APPOINTMENT_LOCATION = "Dental Clinic";
@@ -63,8 +65,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String RANK_DESC_CRISIS = " " + PREFIX_RANK + VALID_RANK_CRISIS;
     public static final String RANK_DESC_STABLE = " " + PREFIX_RANK + VALID_RANK_STABLE;
     public static final String RANK_DESC_URGENT = " " + PREFIX_RANK + VALID_RANK_URGENT;
+    public static final String RANK_DESC_VULNERABLE = " " + PREFIX_RANK + VALID_RANK_VULNERABLE;
 
     // Appointments
     public static final String APPOINTMENT_DATE_TIME_DESC_BOB = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_DATE_TIME;
