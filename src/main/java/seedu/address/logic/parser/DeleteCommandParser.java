@@ -23,17 +23,18 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        // TODO: delete lines below
-//        Index index = ParserUtil.parseIndex(args);
-//        return new DeleteCommand(index);
-        requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_RANK, PREFIX_APPOINTMENT);
+        try {
+            requireNonNull(args);
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_RANK, PREFIX_APPOINTMENT);
 
-        String nameString = args.trim().split(" /", 2)[0];
-        Name name = ParserUtil.parseName(nameString);
-        return new DeleteCommand(name);
+            String nameString = args.trim().split(" /", 2)[0];
+            Name name = ParserUtil.parseName(nameString);
+            return new DeleteCommand(name);
+        } catch (ParseException ps) {
+            throw new ParseException(ps.getMessage());
+        }
 
     }
 
