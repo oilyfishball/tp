@@ -15,6 +15,7 @@ import seedu.address.model.appointment.AppointmentStatus;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Name;
 import seedu.address.model.util.DateTimeUtil;
+import seedu.address.model.util.DurationUtil;
 
 /**
  * Jackson-friendly version of {@link Appointment}.
@@ -53,7 +54,7 @@ class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment src) {
         this.dateTime = DateTimeUtil.stringFromLocalDateTime(src.getDateTime().dateTime);
-        this.length = src.getLength().value;
+        this.length = DurationUtil.stringFromDuration(src.getLength().duration);
         this.location = src.getLocation().value;
         this.type = src.getType().value;
         this.message = src.getMessage().value;
