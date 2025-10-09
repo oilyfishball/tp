@@ -25,6 +25,7 @@ import seedu.address.model.appointment.AppointmentLength;
 import seedu.address.model.appointment.AppointmentLocation;
 import seedu.address.model.appointment.AppointmentMessage;
 import seedu.address.model.appointment.AppointmentStatus;
+import seedu.address.model.appointment.AppointmentStatusType;
 import seedu.address.model.appointment.AppointmentType;
 
 public class LinkAppointmentCommandParserTest {
@@ -51,7 +52,7 @@ public class LinkAppointmentCommandParserTest {
         Appointment expectedAppointment = new Appointment(BOB.getName(),
             new AppointmentDateTime(VALID_APPOINTMENT_DATE_TIME), new AppointmentLength(""),
             new AppointmentLocation(""), new AppointmentType(""),
-            new AppointmentMessage(""), new AppointmentStatus(AppointmentStatus.PLANNED));
+            new AppointmentMessage(""), new AppointmentStatus(AppointmentStatusType.PLANNED.toString()));
         // whitespace only preamble
         assertParseSuccess(parser, CREATE_FLAG + NAME_DESC_BOB
                 + APPOINTMENT_DATE_TIME_DESC_BOB,

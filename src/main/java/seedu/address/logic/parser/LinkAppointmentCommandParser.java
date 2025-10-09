@@ -21,6 +21,7 @@ import seedu.address.model.appointment.AppointmentLength;
 import seedu.address.model.appointment.AppointmentLocation;
 import seedu.address.model.appointment.AppointmentMessage;
 import seedu.address.model.appointment.AppointmentStatus;
+import seedu.address.model.appointment.AppointmentStatusType;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Name;
 
@@ -65,7 +66,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
         AppointmentMessage message = ParserUtil.parseAppointmentMessage(
                 argMultimap.getValue(PREFIX_MESSAGE).orElse(AppointmentMessage.NO_MESSAGE));
         AppointmentStatus status = ParserUtil.parseAppointmentStatus(
-                argMultimap.getValue(PREFIX_STATUS).orElse(AppointmentStatus.PLANNED));
+                argMultimap.getValue(PREFIX_STATUS).orElse(AppointmentStatusType.PLANNED.toString()));
 
         return new Appointment(
                 clientName,
