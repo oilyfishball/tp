@@ -9,6 +9,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentFlag;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -21,6 +22,7 @@ public class LinkAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a new appointment to a client. "
             + "Parameters: "
+            + "FLAG "
             + "/n CLIENT_NAME "
             + "/appt DATE [TIME] "
             + "[/len MINUTES] "
@@ -28,7 +30,7 @@ public class LinkAppointmentCommand extends Command {
             + "[/type TYPE] "
             + "[/msg NOTES] "
             + "[/status planned|confirmed|completed|cancelled]\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " -c "
             + "/n Alex Wu "
             + "/appt 12-10-2025 1430 "
             + "/len 90 "
@@ -40,6 +42,7 @@ public class LinkAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment linked to %1$s: %2$s";
     public static final String MESSAGE_NO_SUCH_PERSON = "No client found with the name: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENTS = "This appointment already exists in the address book.";
+    private final AppointmentFlag flag;
     private final Name clientName;
     private final Appointment appointment;
 
@@ -47,9 +50,10 @@ public class LinkAppointmentCommand extends Command {
      * Construct a LinkAppointmentCommand to link client with the specified appointment
      * The relationship between clientName and appointment is one to many.
      */
-    public LinkAppointmentCommand(Name clientName, Appointment appointment) {
+    public LinkAppointmentCommand(AppointmentFlag flag, Name clientName, Appointment appointment) {
         requireNonNull(clientName);
         requireNonNull(appointment);
+        this.flag = flag;
         this.clientName = clientName;
         this.appointment = appointment;
     }
@@ -68,12 +72,14 @@ public class LinkAppointmentCommand extends Command {
         }
 
         Person client = clientOpt.get();
-
         // Attach appointment to the model (global list)
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENTS);
         }
-        model.addAppointmentWithPerson(appointment, client);
+
+        if (flag.equals(new AppointmentFlag("c"))) {
+            model.addAppointmentWithPerson(appointment, client);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, Messages.format(appointment)));
     }
