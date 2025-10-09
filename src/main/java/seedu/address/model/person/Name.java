@@ -38,6 +38,10 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean containsName(Name other) {
+        return fullName.contains(other.fullName);
+    }
+
 
     @Override
     public String toString() {

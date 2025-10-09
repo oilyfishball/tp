@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_MULTIPLE_PERSONS_FOUND_NAME =
-            "Multiple persons found with the same name! Please be more specific.";
+            "Multiple persons found with the same name! Please be more specific.\nNames found: ";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

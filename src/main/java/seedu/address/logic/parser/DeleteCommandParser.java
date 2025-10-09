@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -30,7 +31,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_TAG, PREFIX_RANK, PREFIX_APPOINTMENT);
 
-        String name = args.trim().split(" /", 2)[0];
+        String nameString = args.trim().split(" /", 2)[0];
+        Name name = ParserUtil.parseName(nameString);
         return new DeleteCommand(name);
 
     }

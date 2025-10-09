@@ -30,10 +30,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonQuery;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TypicalIndexes;
+import seedu.address.testutil.*;
 
 public class AddressBookParserTest {
 
@@ -55,8 +52,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + TypicalNames.NAME_ALICE_PAULINE);
+        assertEquals(new DeleteCommand(TypicalNames.NAME_ALICE_PAULINE), command);
     }
 
     @Test
@@ -84,7 +81,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + " "
-                    + keywords.stream().collect(Collectors.joining(" "))
+                        + keywords.stream().collect(Collectors.joining(" "))
         );
         assertEquals(
                 new FindCommand(PersonQuery.build().setName(keywords.toArray(new String[0]))),
@@ -107,7 +104,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

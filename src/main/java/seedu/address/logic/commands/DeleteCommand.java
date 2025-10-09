@@ -10,6 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,20 +24,20 @@ public class DeleteCommand extends Command {
             + ": Deletes the person identified by the name used in the displayed person list.\n"
             + "Parameters: NAME \n"
             + "Example: " + COMMAND_WORD + " John Doe"
-            + "Note: The name is case insensitive.";
+            + "Note: The name is case sensitive.";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     //    TODO: delete line below
     //    private final Index targetIndex;
-    private final String targetName;
+    private final Name targetName;
 
     // TODO: delete constructor below
 //    public DeleteCommand(Index targetIndex) {
 //        this.targetIndex = targetIndex;
 //    }
 
-    public DeleteCommand(String nameToDelete) {
+    public DeleteCommand(Name nameToDelete) {
         this.targetName = nameToDelete;
     }
 
@@ -47,7 +48,7 @@ public class DeleteCommand extends Command {
 
         // get person from nameQuery - i.e. get person from lastShownList whose name matches nameToDelete
         List<Person> matchedPersons = lastShownList.stream()
-                .filter(person -> person.getName().fullName.equalsIgnoreCase(targetName))
+                .filter(person -> person.getName().containsName(targetName))
                 .toList();
         if (matchedPersons.isEmpty()) {
             // TODO: change to MESSAGE_INVALID_PERSON_DISPLAYED_NAME
@@ -55,7 +56,10 @@ public class DeleteCommand extends Command {
         }
 
         if (matchedPersons.size() > 1) {
-            throw new CommandException(Messages.MESSAGE_MULTIPLE_PERSONS_FOUND_NAME);
+            String[] names = matchedPersons.stream()
+                    .map(person -> person.getName().fullName)
+                    .toArray(String[]::new);
+            throw new CommandException(Messages.MESSAGE_MULTIPLE_PERSONS_FOUND_NAME + String.join(", ", names));
         }
 
         Person personToDelete = matchedPersons.get(0);
@@ -81,7 +85,7 @@ public class DeleteCommand extends Command {
             return false;
         }
 
-        return targetName.equalsIgnoreCase(otherDeleteCommand.targetName);
+        return targetName.equals(otherDeleteCommand.targetName);
     }
 
     @Override
