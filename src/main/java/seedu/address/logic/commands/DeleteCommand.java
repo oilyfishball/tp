@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -21,14 +22,22 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the name used in the displayed person list.\n"
             + "Parameters: NAME \n"
-            + "Example: " + COMMAND_WORD + " John";
+            + "Example: " + COMMAND_WORD + " John Doe"
+            + "Note: The name is case insensitive.";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final Index targetIndex;
+    //    TODO: delete line below
+    //    private final Index targetIndex;
+    private final String targetName;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    // TODO: delete constructor below
+//    public DeleteCommand(Index targetIndex) {
+//        this.targetIndex = targetIndex;
+//    }
+
+    public DeleteCommand(String nameToDelete) {
+        this.targetName = nameToDelete;
     }
 
     @Override
@@ -36,11 +45,27 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        // get person from nameQuery - i.e. get person from lastShownList whose name matches nameToDelete
+        List<Person> matchedPersons = lastShownList.stream()
+                .filter(person -> person.getName().fullName.equalsIgnoreCase(targetName))
+                .toList();
+        if (matchedPersons.isEmpty()) {
+            // TODO: change to MESSAGE_INVALID_PERSON_DISPLAYED_NAME
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (matchedPersons.size() > 1) {
+            throw new CommandException(Messages.MESSAGE_MULTIPLE_PERSONS_FOUND_NAME);
+        }
+
+        Person personToDelete = matchedPersons.get(0);
+        // TODO: delete lines below
+//        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        }
+
+        // TODO: delete line below
+//        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
@@ -52,18 +77,17 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteCommand otherDeleteCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return targetName.equalsIgnoreCase(otherDeleteCommand.targetName);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("targetName", targetName)
                 .toString();
     }
 }
