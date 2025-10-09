@@ -36,11 +36,11 @@ public class LinkAppointmentCommandParserTest {
         AppointmentFlag flag = new AppointmentFlag("c");
         Appointment expectedAppointment = BOB.getAppointments().get(0);
         // whitespace only preamble
-        String input = CREATE_FLAG + NAME_DESC_BOB + APPOINTMENT_DATE_TIME_DESC_BOB;
-//                + APPOINTMENT_LENGTH_DESC_BOB
-//                + APPOINTMENT_LOCATION_DESC_BOB + APPOINTMENT_TYPE_DESC_BOB
-//                + APPOINTMENT_MESSAGE_DESC_BOB
-//                + APPOINTMENT_STATUS_DESC_BOB;
+        String input = CREATE_FLAG + NAME_DESC_BOB + APPOINTMENT_DATE_TIME_DESC_BOB
+                + APPOINTMENT_LENGTH_DESC_BOB
+                + APPOINTMENT_LOCATION_DESC_BOB + APPOINTMENT_TYPE_DESC_BOB
+                + APPOINTMENT_MESSAGE_DESC_BOB
+                + APPOINTMENT_STATUS_DESC_BOB;
         System.out.println(input);
         assertParseSuccess(parser, input,
             new LinkAppointmentCommand(flag, BOB.getName(), expectedAppointment));
@@ -54,7 +54,7 @@ public class LinkAppointmentCommandParserTest {
             new AppointmentLocation(""), new AppointmentType(""),
             new AppointmentMessage(""), new AppointmentStatus(AppointmentStatus.PLANNED));
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+        assertParseSuccess(parser, CREATE_FLAG + NAME_DESC_BOB
                 + APPOINTMENT_DATE_TIME_DESC_BOB,
             new LinkAppointmentCommand(flag, BOB.getName(), expectedAppointment));
     }
