@@ -138,6 +138,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void editAppointment(Appointment target, Appointment newAppt) {
+        requireNonNull(target);
+        requireNonNull(newAppt);
+        deleteAppointment(target);
+        addAppointment(newAppt);
+    }
+
+    @Override
     public void deleteAppointment(Appointment target) {
         requireNonNull(target);
         addressBook.removeAppointment(target);
