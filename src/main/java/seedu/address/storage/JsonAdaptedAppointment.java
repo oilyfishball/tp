@@ -14,10 +14,12 @@ import seedu.address.model.appointment.AppointmentMessage;
 import seedu.address.model.appointment.AppointmentStatus;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Name;
+import seedu.address.model.util.DateTimeUtil;
+import seedu.address.model.util.DurationUtil;
 
 /**
  * Jackson-friendly version of {@link Appointment}.
- *
+ * <p>
  * Note: We do NOT store clientName here since the appointment is nested under a Person.
  * During deserialization, the parent {@link JsonAdaptedPerson} passes the person's Name in.
  */
@@ -47,10 +49,12 @@ class JsonAdaptedAppointment {
         this.status = status;
     }
 
-    /** Converts a model {@code Appointment} to a Jackson-friendly form. */
+    /**
+     * Converts a model {@code Appointment} to a Jackson-friendly form.
+     */
     public JsonAdaptedAppointment(Appointment src) {
-        this.dateTime = src.getDateTime().value;
-        this.length = src.getLength().value;
+        this.dateTime = DateTimeUtil.stringFromLocalDateTime(src.getDateTime().dateTime);
+        this.length = DurationUtil.stringFromDuration(src.getLength().duration);
         this.location = src.getLocation().value;
         this.type = src.getType().value;
         this.message = src.getMessage().value;
@@ -94,6 +98,6 @@ class JsonAdaptedAppointment {
         final AppointmentStatus modelStatus = new AppointmentStatus(stat);
 
         return new Appointment(ownerName, modelDateTime,
-            modelLength, modelLocation, modelType, modelMessage, modelStatus);
+                modelLength, modelLocation, modelType, modelMessage, modelStatus);
     }
 }
