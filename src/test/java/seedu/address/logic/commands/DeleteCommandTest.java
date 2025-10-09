@@ -8,9 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalNames.NAME_ALICE_PAULINE;
-import static seedu.address.testutil.TypicalNames.NAME_BENSON_MEIER;
-import static seedu.address.testutil.TypicalNames.NAME_INVALID;
+import static seedu.address.testutil.TypicalNames.*;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -49,9 +47,9 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
-        DeleteCommand deleteCommand = new DeleteCommand(NAME_INVALID);
+        DeleteCommand deleteCommand = new DeleteCommand(NAME_DOES_NOT_EXIST);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_DOES_NOT_EXIST);
     }
 
     @Test
@@ -80,11 +78,11 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Name notInViewButInBookName = NAME_BENSON_MEIER;
-        // ensures that invalidName is still in of address book list
+        // ensures that notInViewButInBookName is still in address book list
         assertTrue(model.getAddressBook().getPersonList().stream().anyMatch(p -> p.getName().equals(notInViewButInBookName)));
         DeleteCommand deleteCommand = new DeleteCommand(notInViewButInBookName);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_DOES_NOT_EXIST);
     }
 
     @Test

@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,14 +26,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    //    TODO: delete line below
-    //    private final Index targetIndex;
     private final Name targetName;
-
-    // TODO: delete constructor below
-//    public DeleteCommand(Index targetIndex) {
-//        this.targetIndex = targetIndex;
-//    }
 
     public DeleteCommand(Name nameToDelete) {
         this.targetName = nameToDelete;
@@ -51,8 +42,7 @@ public class DeleteCommand extends Command {
                 .filter(person -> person.getName().containsName(targetName))
                 .toList();
         if (matchedPersons.isEmpty()) {
-            // TODO: change to MESSAGE_INVALID_PERSON_DISPLAYED_NAME
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_PERSON_DOES_NOT_EXIST);
         }
 
         if (matchedPersons.size() > 1) {
@@ -63,13 +53,6 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = matchedPersons.get(0);
-        // TODO: delete lines below
-//        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
-
-        // TODO: delete line below
-//        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }

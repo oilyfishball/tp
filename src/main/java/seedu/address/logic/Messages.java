@@ -21,6 +21,8 @@ public class Messages {
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_MULTIPLE_PERSONS_FOUND_NAME =
             "Multiple persons found with the same name! Please be more specific.\nNames found: ";
+    public static final String MESSAGE_PERSON_DOES_NOT_EXIST =
+            "The person is not in the list. Please filter again with 'find'.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
