@@ -20,7 +20,7 @@ public class RankTest {
 
     @Test
     public void isValidRankName() {
-        // null tag name
+        // null rank name
         assertThrows(NullPointerException.class, () -> Rank.isValidRankName(null));
     }
 

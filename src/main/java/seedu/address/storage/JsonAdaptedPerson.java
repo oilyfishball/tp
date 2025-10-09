@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
         this.tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        this.rank = source.getRank().rankName;
+        this.rank = source.getRank().toString();
         this.appointments.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));

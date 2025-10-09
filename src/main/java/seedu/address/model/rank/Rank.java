@@ -12,10 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Rank {
     public static final String MESSAGE_CONSTRAINTS = "Rank names should be one of the four: "
             + "stable/vulnerable/urgent/crisis";
-    public static final String VALIDATION_REGEX = "stable|vulnerable|urgent|crisis";
-    public static final String NO_RANK = "";
-
-    public final String rankName;
+    public final RankType rankName;
 
     /**
      * Constructs a {@code Rank}.
@@ -23,17 +20,41 @@ public class Rank {
      * @param rankName A valid rank name.
      */
     public Rank(String rankName) {
-        String checkRank = rankName.toLowerCase();
-        requireNonNull(checkRank);
-        checkArgument(isValidRankName(checkRank), MESSAGE_CONSTRAINTS);
-        this.rankName = checkRank;
+        requireNonNull(rankName);
+        checkArgument(isValidRankName(rankName), MESSAGE_CONSTRAINTS);
+        this.rankName = stringToRank(rankName.trim().toLowerCase());
+    }
+
+    /**
+     * Returns a RankType from a string, ignoring case.
+     */
+    public static RankType stringToRank(String input) {
+        switch (input) {
+        case "stable":
+            return RankType.STABLE;
+        case "vulnerable":
+            return RankType.VULNERABLE;
+        case "urgent":
+            return RankType.URGENT;
+        case "crisis":
+            return RankType.CRISIS;
+        case "":
+            return RankType.NONE;
+        default:
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
      * Returns true if a given string is a valid rank name.
      */
     public static boolean isValidRankName(String test) {
-        return test.equals(NO_RANK) || test.matches(VALIDATION_REGEX);
+        String trimmedTest = test.trim().toLowerCase();
+        return trimmedTest.isEmpty()
+                || trimmedTest.equals("stable")
+                || trimmedTest.equals("vulnerable")
+                || trimmedTest.equals("urgent")
+                || trimmedTest.equals("crisis");
     }
 
     @Override
@@ -60,7 +81,7 @@ public class Rank {
      * Format state as text for viewing.
      */
     public String toString() {
-        return rankName;
+        return rankName.toString();
     }
 
 }
