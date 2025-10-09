@@ -193,4 +193,14 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    public Person getPerson(String name) {
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            Person curr = filteredPersons.get(i);
+            String tempName = curr.getName().toString().trim();
+            if (tempName.equals(name)) {
+                return curr;
+            }
+        }
+        return null;
+    }
 }

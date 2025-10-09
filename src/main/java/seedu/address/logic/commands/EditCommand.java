@@ -10,8 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -52,22 +54,29 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Successfully edited %1$s's information to:\n";
+    public static final String MESSAGE_INVALID_SYNTAX = """
+             Invalid syntax. Please ensure that the command adheres to the following:
+             - Edit name: `edit [name] /n [name]`
+             - Edit tags (able to chain more than 1 tag): `edit [name] /t [tag]`
+             - Edit home address: `edit [name] /a [address]`
+             - Edit phone number: `edit [name] /p [phone number]`
+             - Edit email address: `edit [name] /e [email address]`
+             - Combinations: `edit [name] /t [tag] /p [phone number] ...`""";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final String indexName;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param indexName of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(String indexName, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(indexName);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.indexName = indexName.trim();
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -75,11 +84,20 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Map<String, Integer> idMap = new HashMap<>();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        for (int i = 0; i < lastShownList.size(); i++) {
+            Person curr = lastShownList.get(i);
+            String name = curr.getName().toString().trim();
+            idMap.put(name, i);
+        }
+
+        if (!idMap.containsKey(this.indexName)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        int idx = idMap.get(this.indexName);
+        Index index = Index.fromZeroBased(idx);
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
@@ -89,9 +107,15 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+
+        return new CommandResult(getReturnString(editedPerson));
     }
 
+    private String getReturnString(Person editedPerson) {
+        String result = String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName());
+        result += Messages.format(editedPerson);
+        return result;
+    }
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -123,14 +147,15 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+
+        return indexName.equals(otherEditCommand.indexName)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("indexName", indexName)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
