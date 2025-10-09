@@ -83,5 +83,4 @@ public class Rank {
     public String toString() {
         return rankName.toString();
     }
-
 }
