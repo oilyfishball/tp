@@ -58,7 +58,7 @@ class JsonAdaptedAppointment {
         this.location = src.getLocation().value;
         this.type = src.getType().value;
         this.message = src.getMessage().value;
-        this.status = src.getStatus().value;
+        this.status = src.getStatus().value.toString();
     }
 
     /**

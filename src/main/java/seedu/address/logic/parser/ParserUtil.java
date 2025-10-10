@@ -216,7 +216,7 @@ public class ParserUtil {
      */
     public static AppointmentStatus parseAppointmentStatus(String status) throws ParseException {
         if (status == null || status.trim().isEmpty()) {
-            return new AppointmentStatus(AppointmentStatus.PLANNED);
+            return new AppointmentStatus("planned");
         }
         String trimmed = status.trim().toLowerCase();
         if (!AppointmentStatus.isValidStatus(trimmed)) {

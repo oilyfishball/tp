@@ -24,6 +24,7 @@ import seedu.address.model.appointment.AppointmentLength;
 import seedu.address.model.appointment.AppointmentLocation;
 import seedu.address.model.appointment.AppointmentMessage;
 import seedu.address.model.appointment.AppointmentStatus;
+import seedu.address.model.appointment.AppointmentStatusType;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -59,9 +60,9 @@ public class LinkAppointmentCommandTest {
         Person client = new PersonBuilder(ALICE).build();
         AppointmentFlag flag = new AppointmentFlag("c");
         Appointment appt = new Appointment(client.getName(),
-                new AppointmentDateTime("30-10-2025"), new AppointmentLength(""),
-                new AppointmentLocation(""), new AppointmentType(""),
-                new AppointmentMessage(""), new AppointmentStatus(AppointmentStatus.PLANNED));
+            new AppointmentDateTime("30-10-2025"), new AppointmentLength(""),
+            new AppointmentLocation(""), new AppointmentType(""),
+            new AppointmentMessage(""), new AppointmentStatus(AppointmentStatusType.PLANNED.toString()));
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
                 flag, client.getName(), appt);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
