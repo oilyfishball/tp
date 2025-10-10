@@ -18,6 +18,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.util.DateTimeUtil;
 import seedu.address.model.util.DurationUtil;
 
+import static seedu.address.model.appointment.AppointmentLength.NO_LENGTH;
+
 /**
  * Jackson-friendly version of {@link Appointment}.
  * <p>
@@ -86,7 +88,9 @@ class JsonAdaptedAppointment {
         }
         final AppointmentDateTime modelDateTime = new AppointmentDateTime(dateTime);
 
-        final String len = (length == null) ? "" : length.trim();
+        final String len = (length == null) || length.equals("0")
+                ? AppointmentLength.NO_LENGTH
+                : length.trim();
         if (!AppointmentLength.isValidLength(len)) {
             throw new IllegalValueException(AppointmentLength.MESSAGE_CONSTRAINTS);
         }
