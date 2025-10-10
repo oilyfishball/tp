@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentFlag;
@@ -47,10 +48,13 @@ public class LinkAppointmentCommand extends Command {
     private final Appointment appointment;
 
     /**
-     * Construct a LinkAppointmentCommand to link client with the specified appointment
+     * Constructs a LinkAppointmentCommand to link client with the specified appointment
      * The relationship between clientName and appointment is one to many.
      */
-    public LinkAppointmentCommand(AppointmentFlag flag, Name clientName, Appointment appointment) {
+    public LinkAppointmentCommand(
+            AppointmentFlag flag,
+            Name clientName,
+            Appointment appointment) {
         requireNonNull(clientName);
         requireNonNull(appointment);
         this.flag = flag;
@@ -77,11 +81,31 @@ public class LinkAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENTS);
         }
 
-        if (flag.equals(new AppointmentFlag("c"))) {
+        switch (flag.value) {
+        case 'c':
             model.addAppointmentWithPerson(appointment, client);
+            break;
+        case 'd':
+            handleDelete();
+            break;
+        case 'e':
+            handleEdit();
+        default:
+            throw new CommandException("Unable to recognise Flag");
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientName, Messages.format(appointment)));
+    }
+
+    private void handleEdit() {
+
+    }
+
+    /**
+     * Dummy method
+     */
+    private void handleDelete() {
+
     }
 
     @Override

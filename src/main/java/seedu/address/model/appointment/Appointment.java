@@ -14,6 +14,7 @@ import seedu.address.model.person.Name;
 public class Appointment {
 
     private final Name clientName;
+    private final AppointmentId id;
     private final AppointmentDateTime dateTime;
     private final AppointmentLength length;
     private final AppointmentLocation location;
@@ -23,6 +24,7 @@ public class Appointment {
 
     /**
      * Every field must be present and not null.
+     * A random id will be created
      */
     public Appointment(Name clientName,
                        AppointmentDateTime dateTime,
@@ -32,6 +34,7 @@ public class Appointment {
                        AppointmentMessage message,
                        AppointmentStatus status) {
         requireAllNonNull(clientName, dateTime, length, location, type, message, status);
+        this.id = new AppointmentId();
         this.clientName = clientName;
         this.dateTime = dateTime;
         this.length = length;
@@ -39,6 +42,33 @@ public class Appointment {
         this.type = type;
         this.message = message;
         this.status = status;
+    }
+
+    /**
+     * Constructor for Appointment with an ID already created
+     * @param id ID for Appointment
+     */
+    public Appointment(AppointmentId id,
+                       Name clientName,
+                       AppointmentDateTime dateTime,
+                       AppointmentLength length,
+                       AppointmentLocation location,
+                       AppointmentType type,
+                       AppointmentMessage message,
+                       AppointmentStatus status) {
+        requireAllNonNull(id, clientName, dateTime, length, location, type, message, status);
+        this.id = id;
+        this.clientName = clientName;
+        this.dateTime = dateTime;
+        this.length = length;
+        this.location = location;
+        this.type = type;
+        this.message = message;
+        this.status = status;
+    }
+
+    public AppointmentId getId() {
+        return this.id;
     }
 
     public Name getClientName() {
@@ -93,7 +123,8 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return clientName.equals(otherAppointment.clientName)
+        return id.equals(otherAppointment.id)
+                && clientName.equals(otherAppointment.clientName)
                 && dateTime.equals(otherAppointment.dateTime)
                 && length.equals(otherAppointment.length)
                 && location.equals(otherAppointment.location)
@@ -104,12 +135,13 @@ public class Appointment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateTime, length, location, type, message, status);
+        return Objects.hash(id, dateTime, length, location, type, message, status);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("id", id)
                 .add("dateTime", dateTime)
                 .add("length", length)
                 .add("location", location)
