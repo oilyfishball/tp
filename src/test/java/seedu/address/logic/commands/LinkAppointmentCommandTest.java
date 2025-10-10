@@ -45,14 +45,14 @@ public class LinkAppointmentCommandTest {
         Person client = new PersonBuilder(ALICE).build();
         AppointmentFlag flag = new AppointmentFlag("c");
         Appointment appt = new AppointmentBuilder()
-            .withName(client.getName().toString()).withDateTime("12-10-3099 1430").build();
+                .withName(client.getName().toString()).withDateTime("12-10-3099 1430").build();
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
                 flag, client.getName(), appt);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addAppointmentWithPerson(appt, client);
         assertCommandSuccess(cmd, model, String.format(
-            LinkAppointmentCommand.MESSAGE_SUCCESS, client.getName(),
-            Messages.format(appt)), expectedModel);
+                LinkAppointmentCommand.MESSAGE_SUCCESS, client.getName(),
+                Messages.format(appt)), expectedModel);
     }
 
     @Test
@@ -64,21 +64,21 @@ public class LinkAppointmentCommandTest {
             new AppointmentLocation(""), new AppointmentType(""),
             new AppointmentMessage(""), new AppointmentStatus(AppointmentStatusType.PLANNED.toString()));
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
-            flag, client.getName(), appt);
+                flag, client.getName(), appt);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addAppointmentWithPerson(appt, client);
         assertCommandSuccess(cmd, model, String.format(
-            LinkAppointmentCommand.MESSAGE_SUCCESS, client.getName(),
-            Messages.format(appt)), expectedModel);
+                LinkAppointmentCommand.MESSAGE_SUCCESS, client.getName(),
+                Messages.format(appt)), expectedModel);
     }
 
     @Test
     public void execute_notFoundName_failure() {
         AppointmentFlag flag = new AppointmentFlag("c");
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
-            flag, new Name("random name"), MEETING_APPT);
+                flag, new Name("random name"), MEETING_APPT);
         assertCommandFailure(cmd, model,
-            String.format(LinkAppointmentCommand.MESSAGE_NO_SUCH_PERSON, "random name"));
+                String.format(LinkAppointmentCommand.MESSAGE_NO_SUCH_PERSON, "random name"));
     }
 
     @Test
@@ -86,18 +86,18 @@ public class LinkAppointmentCommandTest {
         Person person = new PersonBuilder().withName("test").build();
         AppointmentFlag flag = new AppointmentFlag("c");
         Appointment appt = new Appointment(
-            person.getName(),
-            new AppointmentDateTime("26-10-2025 1030"), // different timing
-            new AppointmentLength("90"),
-            new AppointmentLocation("NTU Library"),
-            new AppointmentType("Meeting"),
-            new AppointmentMessage("Project discussion"),
-            new AppointmentStatus("planned")
+                person.getName(),
+                new AppointmentDateTime("26-10-2025 1030"), // different timing
+                new AppointmentLength("90"),
+                new AppointmentLocation("NTU Library"),
+                new AppointmentType("Meeting"),
+                new AppointmentMessage("Project discussion"),
+                new AppointmentStatus("planned")
         );
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
-            flag, person.getName(), appt);
+                flag, person.getName(), appt);
         assertCommandFailure(cmd, model,
-            String.format(LinkAppointmentCommand.MESSAGE_NO_SUCH_PERSON, "test"));
+                String.format(LinkAppointmentCommand.MESSAGE_NO_SUCH_PERSON, "test"));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class LinkAppointmentCommandTest {
         assert !ALICE.getAppointments().isEmpty();
         Appointment firstAliceAppointment = ALICE.getAppointments().get(0);
         LinkAppointmentCommand cmd = new LinkAppointmentCommand(
-            flag, client.getName(), firstAliceAppointment);
+                flag, client.getName(), firstAliceAppointment);
         assertCommandFailure(cmd, model, LinkAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENTS);
     }
 
@@ -115,14 +115,14 @@ public class LinkAppointmentCommandTest {
     public void equals() {
         AppointmentFlag flag = new AppointmentFlag("c");
         LinkAppointmentCommand aliceMeeting = new LinkAppointmentCommand(
-            flag, ALICE.getName(), MEETING_APPT);
+                flag, ALICE.getName(), MEETING_APPT);
         LinkAppointmentCommand bobMeeting = new LinkAppointmentCommand(
-            flag, BOB.getName(), DENTIST_APPT);
+                flag, BOB.getName(), DENTIST_APPT);
         // same object -> returns true
         assertTrue(aliceMeeting.equals(aliceMeeting));
         // same values -> returns true
         LinkAppointmentCommand aliceMeetingCopied = new LinkAppointmentCommand(
-            flag, ALICE.getName(), MEETING_APPT);
+                flag, ALICE.getName(), MEETING_APPT);
         assertTrue(aliceMeeting.equals(aliceMeetingCopied));
         // different values -> returns false
         assertFalse(aliceMeeting.equals(bobMeeting));
@@ -134,10 +134,10 @@ public class LinkAppointmentCommandTest {
     public void toStringMethod() {
         AppointmentFlag flag = new AppointmentFlag("c");
         LinkAppointmentCommand linkCommand = new LinkAppointmentCommand(
-            flag, ALICE.getName(), MEETING_APPT);
+                flag, ALICE.getName(), MEETING_APPT);
         String expected = LinkAppointmentCommand.class.getCanonicalName()
-            + "{clientName=" + ALICE.getName() + ", appointment="
-            + MEETING_APPT + "}";
+                + "{clientName=" + ALICE.getName() + ", appointment="
+                + MEETING_APPT + "}";
         assertEquals(expected, linkCommand.toString());
     }
 }
