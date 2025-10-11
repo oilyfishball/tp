@@ -4,24 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.LinkAppointmentCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.appointment.AppointmentFlag;
-import seedu.address.model.appointment.AppointmentId;
-import seedu.address.model.appointment.AppointmentLength;
-import seedu.address.model.appointment.AppointmentLocation;
-import seedu.address.model.appointment.AppointmentMessage;
-import seedu.address.model.appointment.AppointmentStatus;
-import seedu.address.model.appointment.AppointmentType;
-import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 

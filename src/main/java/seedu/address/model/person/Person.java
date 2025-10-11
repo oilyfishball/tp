@@ -107,6 +107,9 @@ public class Person {
         return new Person(name, phone, email, address, tags, rank, updatedAppointments);
     }
 
+    /**
+     * Returns a new Person with new Appointment updated to an old appointment
+     */
     public Person withUpdatedAppointment(Appointment oldAppt, Appointment newAppt) {
         List<Appointment> updatedAppointments = new ArrayList<>(appointments);
         updatedAppointments = updatedAppointments.stream()

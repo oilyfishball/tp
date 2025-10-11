@@ -2,9 +2,13 @@ package seedu.address.model.appointment;
 
 import java.util.UUID;
 
+/**
+ * Represents the ID of an appointment.
+ * Format: any string.
+ */
 public class AppointmentId {
-    private final String id;
     public static final String NO_ID = "";
+    private final String id;
 
     public AppointmentId() {
         this.id = UUID.randomUUID().toString().substring(0, 6);

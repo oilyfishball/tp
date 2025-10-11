@@ -18,8 +18,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.util.DateTimeUtil;
 import seedu.address.model.util.DurationUtil;
 
-import static seedu.address.model.appointment.AppointmentLength.NO_LENGTH;
-
 /**
  * Jackson-friendly version of {@link Appointment}.
  * <p>

@@ -43,7 +43,7 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args,
-                PREFIX_FLAG, PREFIX_ID,PREFIX_NAME, PREFIX_APPOINTMENT, PREFIX_LENGTH,
+                PREFIX_FLAG, PREFIX_ID, PREFIX_NAME, PREFIX_APPOINTMENT, PREFIX_LENGTH,
                 PREFIX_LOCATION, PREFIX_TYPE, PREFIX_MESSAGE, PREFIX_STATUS);
 
         if (args.trim().isEmpty() || !argMultimap.getValue(PREFIX_FLAG).isPresent()) {

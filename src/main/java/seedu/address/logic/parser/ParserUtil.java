@@ -239,7 +239,13 @@ public class ParserUtil {
         return new AppointmentFlag(flag);
     }
 
-    public static AppointmentId parseAppointmentId (String id) throws ParseException {
+    /**
+     * Parses a {@code String flag} into an {@code AppointmentId}.
+     * @param id String to parse
+     * @return An appointment ID
+     * @throws ParseException
+     */
+    public static AppointmentId parseAppointmentId(String id) throws ParseException {
         if (id.trim().isEmpty() || id == null) {
             throw new ParseException("Invalid ID!");
         }

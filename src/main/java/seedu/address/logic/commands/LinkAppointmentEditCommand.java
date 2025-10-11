@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.Messages;
@@ -16,14 +18,19 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
-import java.util.Optional;
-
+/**
+ * Edits an appointment and links it directly to a client (person).
+ */
 public class LinkAppointmentEditCommand extends LinkAppointmentCommand {
-    private final AppointmentId targetId;
-    private final EditAppointmentDescriptor newAppt;
     public static final String MESSAGE_DUPLICATE_APPOINTMENTS = "This appointment already exists in the address book.";
     public static final String MESSAGE_SUCCESS = "New appointment linked to %1$s: %2$s";
 
+    private final AppointmentId targetId;
+    private final EditAppointmentDescriptor newAppt;
+
+    /**
+     * Constructor to create a LinkAppointmentEditCommand
+     */
     public LinkAppointmentEditCommand(
             AppointmentId targetId,
             EditAppointmentDescriptor newAppt) {
@@ -95,8 +102,13 @@ public class LinkAppointmentEditCommand extends LinkAppointmentCommand {
         }
 
         LinkAppointmentEditCommand otherCommand = (LinkAppointmentEditCommand) other;
-        return otherCommand.targetId.equals(targetId) && otherCommand.newAppt.equals(newAppt);    }
+        return otherCommand.targetId.equals(targetId) && otherCommand.newAppt.equals(newAppt);
+    }
 
+    /**
+     * Stores the details to edit the appointment with. Each non-empty field value will replace the
+     * corresponding field value of the appointment.
+     */
     public static class EditAppointmentDescriptor {
         private AppointmentId id;
         private AppointmentDateTime dateTime;
@@ -108,6 +120,10 @@ public class LinkAppointmentEditCommand extends LinkAppointmentCommand {
 
         public EditAppointmentDescriptor() {}
 
+        /**
+         * Constructor for EditAppointmentDescriptor
+         * @param toCopy
+         */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setId(toCopy.id);
             setDateTime(toCopy.dateTime);
