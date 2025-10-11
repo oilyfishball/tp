@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.AppointmentFlag;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.AppointmentLength;
 import seedu.address.model.appointment.AppointmentLocation;
 import seedu.address.model.appointment.AppointmentMessage;
@@ -236,5 +237,13 @@ public class ParserUtil {
             throw new ParseException("Invalid Flag!");
         }
         return new AppointmentFlag(flag);
+    }
+
+    public static AppointmentId parseAppointmentId (String id) throws ParseException {
+        if (id.trim().isEmpty() || id == null) {
+            return new AppointmentId();
+        }
+
+        return new AppointmentId(id);
     }
 }

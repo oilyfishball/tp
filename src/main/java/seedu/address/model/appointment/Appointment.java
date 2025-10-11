@@ -12,7 +12,6 @@ import seedu.address.model.person.Name;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment {
-
     private final Name clientName;
     private final AppointmentId id;
     private final AppointmentDateTime dateTime;
@@ -107,10 +106,7 @@ public class Appointment {
         if (other == this) {
             return true;
         }
-
-        return other != null
-                && other.getClientName().equals(getClientName())
-                && other.getDateTime().equals(getDateTime());
+        return other != null && other.getId().equals(getId());
     }
 
     @Override
