@@ -84,6 +84,19 @@ public class LinkAppointmentEditCommand extends LinkAppointmentCommand {
         return new Appointment(targetId, clientName, dateTime, length, location, type, message, status);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof LinkAppointmentEditCommand)) {
+            return false;
+        }
+
+        LinkAppointmentEditCommand otherCommand = (LinkAppointmentEditCommand) other;
+        return otherCommand.targetId.equals(targetId) && otherCommand.newAppt.equals(newAppt);    }
+
     public static class EditAppointmentDescriptor {
         private AppointmentId id;
         private AppointmentDateTime dateTime;

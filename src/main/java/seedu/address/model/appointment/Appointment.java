@@ -106,7 +106,10 @@ public class Appointment {
         if (other == this) {
             return true;
         }
-        return other != null && other.getId().equals(getId());
+        return other != null
+                && other.getId().equals(getId())
+                && other.getClientName().equals(getClientName())
+                && other.getDateTime().equals(getDateTime());
     }
 
     @Override
@@ -119,8 +122,7 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return id.equals(otherAppointment.id)
-                && clientName.equals(otherAppointment.clientName)
+        return  clientName.equals(otherAppointment.clientName)
                 && dateTime.equals(otherAppointment.dateTime)
                 && length.equals(otherAppointment.length)
                 && location.equals(otherAppointment.location)

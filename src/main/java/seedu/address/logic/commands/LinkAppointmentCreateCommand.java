@@ -9,6 +9,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.LinkAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -72,23 +73,24 @@ public class LinkAppointmentCreateCommand extends LinkAppointmentCommand {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof LinkAppointmentCreateCommand)) {
-            return false;
-        }
-        LinkAppointmentCreateCommand otherCmd = (LinkAppointmentCreateCommand) other;
-        return clientName.fullName.equalsIgnoreCase(otherCmd.clientName.fullName)
-                && appointment.equals(otherCmd.appointment);
-    }
-
-    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("clientName", clientName)
                 .add("appointment", appointment)
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof LinkAppointmentCreateCommand)) {
+            return false;
+        }
+
+        LinkAppointmentCreateCommand otherCommand = (LinkAppointmentCreateCommand) other;
+        return otherCommand.clientName.equals(clientName) && otherCommand.appointment.equals(appointment);
     }
 }

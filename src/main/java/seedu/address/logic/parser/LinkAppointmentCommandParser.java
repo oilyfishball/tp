@@ -46,12 +46,17 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
                 PREFIX_FLAG, PREFIX_ID,PREFIX_NAME, PREFIX_APPOINTMENT, PREFIX_LENGTH,
                 PREFIX_LOCATION, PREFIX_TYPE, PREFIX_MESSAGE, PREFIX_STATUS);
 
-        AppointmentFlag flag = ParserUtil.parseAppointmentFlag(argMultimap.getValue(PREFIX_FLAG).get());
+        if (args.trim().isEmpty() || !argMultimap.getValue(PREFIX_FLAG).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    LinkAppointmentCommand.MESSAGE_USAGE));
+        }
 
-        validateCommand(flag, argMultimap);
+        validateCommand(argMultimap);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID, PREFIX_NAME, PREFIX_APPOINTMENT,
             PREFIX_LENGTH, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_MESSAGE, PREFIX_STATUS);
+
+        AppointmentFlag flag = ParserUtil.parseAppointmentFlag(argMultimap.getValue(PREFIX_FLAG).get());
 
         if (flag.value == 'c') {
             clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -64,9 +69,6 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
                 throw new ParseException(LinkAppointmentCommand.MESSAGE_INVALID_EDIT_SYNTAX);
             }
             return new LinkAppointmentEditCommand(targetId, editAppointmentDescriptor);
-        } else {
-            clientName = new Name("dummy");
-            appointment = null;
         }
         return null;
     }
@@ -100,7 +102,8 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
         }
     }
 
-    private void validateCommand(AppointmentFlag flag, ArgumentMultimap argMultimap) throws ParseException {
+    private void validateCommand(ArgumentMultimap argMultimap) throws ParseException {
+        AppointmentFlag flag = ParserUtil.parseAppointmentFlag(argMultimap.getValue(PREFIX_FLAG).get());
         switch (flag.value) {
         case 'c':
             if (!arePrefixesPresent(argMultimap, PREFIX_FLAG, PREFIX_NAME, PREFIX_APPOINTMENT)
@@ -119,8 +122,8 @@ public class LinkAppointmentCommandParser implements Parser<LinkAppointmentComma
             }
             break;
         default:
-            // do nothing
-            break;
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    LinkAppointmentCommand.MESSAGE_USAGE));
         }
     }
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 
 public abstract class LinkAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "link";
@@ -29,4 +30,10 @@ public abstract class LinkAppointmentCommand extends Command {
     public static final String MESSAGE_NO_SUCH_PERSON = "No client found with the name: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENTS = "This appointment already exists in the address book.";
     public static final String MESSAGE_INVALID_EDIT_SYNTAX = "Invalid Edit syntax. ";
+
+    @Override
+    public abstract CommandResult execute(Model model) throws CommandException;
+
+    @Override
+    public abstract boolean equals(Object other);
 }

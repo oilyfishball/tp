@@ -241,7 +241,7 @@ public class ParserUtil {
 
     public static AppointmentId parseAppointmentId (String id) throws ParseException {
         if (id.trim().isEmpty() || id == null) {
-            return new AppointmentId();
+            throw new ParseException("Invalid ID!");
         }
 
         return new AppointmentId(id);
